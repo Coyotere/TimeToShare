@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TimeToShare</string>
+    <color name="background_color">#FCF1E3</color>
 </resources>
