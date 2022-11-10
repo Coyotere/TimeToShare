@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">TimeToShare</string>
+    <string name="app_name">Time To Share</string>
+    <string name="add">+</string>
 </resources>
