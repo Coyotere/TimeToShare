@@ -6,4 +6,8 @@
         <item quantity="one">1 membre</item>
         <item quantity="other">%1s membres</item>
     </plurals>
+
+    <string name="textWithoutGroup">Ajouter un nouveau groupe</string>
+
+
 </resources>

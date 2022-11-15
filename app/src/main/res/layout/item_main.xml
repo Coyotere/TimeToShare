@@ -6,6 +6,15 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp">
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#6E6D6D"
+        android:backgroundTint="#6E6D6D"
+        android:layout_toEndOf="@id/image_itemMain"
+        />
+
     <ImageView
         android:id="@+id/image_itemMain"
         android:layout_width="100dp"
