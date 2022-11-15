@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">TimeToShare</string>
-    <color name="background_color">#ffd3c9</color>
+    <string name="app_name">Time To Share</string>
+    <string name="add">+</string>
+    
+    <plurals name="member">
+        <item quantity="one">1 membre</item>
+        <item quantity="other">%1s membres</item>
+    </plurals>
 </resources>

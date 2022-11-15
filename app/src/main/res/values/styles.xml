@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="title">
+        <item name="android:shadowColor">#6C5E5E</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">10</item>
+        <item name="android:shadowRadius">10</item>
+        <item name="android:textColor">#FD0303</item>
+        <item name="android:textColorHint">#CF3E2F</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+</resources>

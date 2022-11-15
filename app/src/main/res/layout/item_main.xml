@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <ImageView
+        android:id="@+id/image_itemMain"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:id="@+id/name_itemMain"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image_itemMain"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/member_itemMain"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_itemMain"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/image_itemMain"
+        tools:text="number member" />
+
+    <ImageView
+        android:id="@+id/bell_itemMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/member_itemMain"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/member_itemMain"
+        />
+
+    <ImageView
+        android:id="@+id/active_itemMain"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignBaseline="@+id/bell_itemMain"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="23dp"
+        android:layout_toEndOf="@+id/bell_itemMain"
+        android:background="@drawable/round_active"
+        android:backgroundTint="#FF0606" />
+
+</RelativeLayout>
