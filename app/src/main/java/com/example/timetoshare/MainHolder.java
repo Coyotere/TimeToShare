@@ -21,5 +21,11 @@ public class MainHolder extends RecyclerView.ViewHolder {
         activeView = itemView.findViewById(R.id.active_itemMain);
         memberView = itemView.findViewById(R.id.member_itemMain);
 
+        bellView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                System.out.println("Click sur Bell");
+            }
+        });
     }
 }
