@@ -1,5 +1,7 @@
 package com.example.timetoshare;
 
+import static com.example.timetoshare.Active.BEFORE;
+
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -39,13 +41,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainHolder> {
 
 
        switch(items.get(position).active){
-           case -1:
+           case BEFORE:
                holder.activeView.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
                break;
-           case 0:
+           case PROGRESS:
                holder.activeView.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                break;
-           case 1:
+           case AFTER:
                holder.activeView.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
        }
         holder.bellView.setImageResource(R.drawable.bell);
