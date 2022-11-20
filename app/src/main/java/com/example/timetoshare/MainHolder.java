@@ -1,5 +1,7 @@
 package com.example.timetoshare;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +27,9 @@ public class MainHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 System.out.println("Click sur Bell");
+                Context context = view.getContext();
+                Intent myIntent = new Intent(context, sendingMessage.class);
+                context.startActivity(myIntent);
             }
         });
     }
