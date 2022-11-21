@@ -14,6 +14,7 @@ public class MainHolder extends RecyclerView.ViewHolder {
     ImageView imageView, bellView, activeView;
     TextView nameView, memberView;
     Context context;
+
     public MainHolder(@NonNull View itemView, Context _context) {
         super(itemView);
         context = _context;
@@ -28,6 +29,17 @@ public class MainHolder extends RecyclerView.ViewHolder {
             public void onClick(View view) {
                 System.out.println("Click sur Bell");
                 Intent myIntent = new Intent(context, sendingMessage.class);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myIntent.putExtra("groupName", nameView.getText().toString());
+                context.startActivity(myIntent);
+            }
+        });
+
+        itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                System.out.println("Click sur Bell");
+                Intent myIntent = new Intent(context, manageGroup.class);
                 myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(myIntent);
             }

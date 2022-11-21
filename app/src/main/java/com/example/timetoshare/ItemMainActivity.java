@@ -45,7 +45,7 @@ public class ItemMainActivity {
 
         this.numMember = userData.getInt("numberMembers", 0);
 
-        this.image = R.drawable.chicken;
+        this.image = userData.getInt("image", 0);
 
         Date currentTime = Calendar.getInstance().getTime();
 

@@ -5,11 +5,15 @@
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">10</item>
         <item name="android:shadowRadius">10</item>
-        <item name="android:textColor">#FD0303</item>
-        <item name="android:textColorHint">#CF3E2F</item>
+        <item name="android:textColor">@color/red_TTS</item>
+        <item name="android:textColorHint">@color/red_TTS</item>
         <item name="android:textSize">35sp</item>
         <item name="android:textStyle">bold</item>
     </style>
-
-
+    <style name="texteTTS">
+        <item name="android:textColor">@color/red_TTS</item>
+        <item name="android:textColorHint">@color/red_TTS</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

@@ -7,7 +7,9 @@ import androidx.core.app.NotificationManagerCompat;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,10 +21,17 @@ import android.widget.TextView;
 
 public class sendingMessage extends AppCompatActivity {
 
+    SharedPreferences db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sending_message);
+
+        db = getSharedPreferences(getIntent().getExtras().getString("groupName"), Context.MODE_PRIVATE);
+
+        final TextView nMembersSM = (TextView) findViewById(R.id.nMembersSM);
+        nMembersSM.setText(getMembersSM() + " members");
 
         final TextView titleSM = (TextView) findViewById(R.id.titleSM);
         titleSM.setText(getTitleSM());
@@ -50,31 +59,29 @@ public class sendingMessage extends AppCompatActivity {
         });
 
         final ImageButton leaveButton = (ImageButton) findViewById(R.id.leaveSM);
-        addButton.setOnClickListener(new View.OnClickListener() {
+        leaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //leave
+                finish();
             }
         });
 
     }
 
+    public int getMembersSM() {
+        return db.getInt("numberMembers", -1);
+    }
     public String getTitleSM() {
-        String title = "";
-        title = "Test title";
-        return title;
+        return getIntent().getExtras().getString("groupName");
     }
 
     public int getImageSM() {
-        int img = 0;
-        img = R.drawable.dragon;
-        return img;
+        return db.getInt("image", 0);
     }
 
     public String getTextSM() {
-        String txt = "";
-        txt = "Test message";
-        return txt;
+        // return db.getString("message", "Error");
+        return "Salut ca marche pas encore.";
     }
 
     public void setRandomImagesSM() {

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         edit_userData.putString("finalDate", dateTime);
 
         edit_userData.putInt("repetition", 3);
+
+        edit_userData.putInt("image", R.drawable.chicken);
         edit_userData.commit();
 
         //items.add(new ItemMainActivity("test", this));
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.recycleViewMain);
-        adapter = new MainAdapter(getApplicationContext(), items);
+        adapter = new MainAdapter(MainActivity.this, items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -82,9 +85,12 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                adapter.notifyDataSetChanged();
-                //items.add(new ItemMainActivity("Nouveau groupe", 3,R.drawable.chicken, false, 0));
-                items.add(new ItemMainActivity("test", context));
+                //adapter.notifyDataSetChanged();
+                ////items.add(new ItemMainActivity("Nouveau groupe", 3,R.drawable.chicken, false, 0));
+                //items.add(new ItemMainActivity("test", context));
+
+                Intent myIntent = new Intent(MainActivity.this, createGroup.class);
+                startActivity(myIntent);
 
             }
         });
