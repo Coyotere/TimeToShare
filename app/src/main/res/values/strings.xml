@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Time To Share</string>
     <string name="add">+</string>
+    <string name="channel_name">NotifTTS</string>
+    <string name="channel_description">NotifyTTS</string>
     
     <plurals name="member">
         <item quantity="one">1 membre</item>

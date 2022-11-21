@@ -1,7 +1,5 @@
 package com.example.timetoshare;
 
-import static com.example.timetoshare.Active.BEFORE;
-
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;

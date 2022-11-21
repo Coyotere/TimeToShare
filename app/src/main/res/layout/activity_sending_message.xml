@@ -4,55 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sendingMessage"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    android:backgroundTint="@color/background_color"
+    tools:context=".sendingMessage">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:id="@+id/leaveSM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="top|left"
-            app:srcCompat="@drawable/back_button" />
+            android:backgroundTint="#00FFFFFF"
+            android:scaleX="1"
+            android:scaleY="1"
+            app:tint="@color/red_TTS"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/iconeSM"
             android:layout_width="157dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/chicken" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/titleSM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/red_TTS"
+            android:textColorHint="@color/red_TTS" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/textSM"
             android:layout_width="match_parent"
-            android:layout_height="178dp"
+            android:layout_height="325dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:ems="10"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:inputType="textPersonName"
             android:text="Name" />
 
-        <Button
-            android:id="@+id/button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/chicken" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/dragon" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/dog" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addSM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Button" />
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
+            android:id="@+id/sendSM"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Button" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
