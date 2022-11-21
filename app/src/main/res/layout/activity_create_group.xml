@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/background_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageGroupe"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/titreGroupe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ceci est un titre"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textColor="@color/red_TTS"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.2"
+            android:shadowDy="1.2"
+            android:shadowRadius="1.2"/>
+
+        <TextView
+            android:id="@+id/dateGroupe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/red_TTS"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.2"
+            android:shadowDy="1.2"
+            android:shadowRadius="1.2"            />
+        <TextView
+            android:id="@+id/repeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Répéter tous les X jours"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/red_TTS"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.2"
+            android:shadowDy="1.2"
+            android:shadowRadius="1.2"/>
+        <ListView
+            android:id="@+id/listUsers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageButton
+            android:id="@+id/btnAddUsers"
+            android:layout_width="75dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/around_button_red"
+            app:srcCompat="@drawable/ic_add"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/zoneMessage"
+            android:layout_width="380dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/around_zone_text"
+            android:inputType="textMultiLine"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/refreshMessage"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/around_button_red"
+            app:srcCompat="@drawable/ic_refresh"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/annuler"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/around_button_red"
+                android:text="annuler"
+                android:textSize="13dp"
+                tools:ignore="TouchTargetSizeCheck" />
+            <Space
+                android:layout_width="200dp"
+                android:layout_height="match_parent"/>
+            <Button
+                android:id="@+id/valider"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/around_zone_text"
+                android:text="valider"
+                android:textSize="13dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

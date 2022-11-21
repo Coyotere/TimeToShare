@@ -3,7 +3,7 @@
     <string name="add">+</string>
     <string name="channel_name">NotifTTS</string>
     <string name="channel_description">NotifyTTS</string>
-    
+
     <plurals name="member">
         <item quantity="one">1 membre</item>
         <item quantity="other">%1s membres</item>
