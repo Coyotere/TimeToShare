@@ -3,6 +3,8 @@ package com.example.timetoshare;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -19,6 +21,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class sendingMessage extends AppCompatActivity {
 
     SharedPreferences db;
@@ -28,10 +34,26 @@ public class sendingMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sending_message);
 
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewSM);
+
+        List<ItemSendMessage> pictures = new ArrayList<ItemSendMessage>();
+        pictures.add(new ItemSendMessage(R.drawable.dog));
+        pictures.add(new ItemSendMessage(R.drawable.dragon));
+        pictures.add(new ItemSendMessage(R.drawable.chicken));
+        pictures.add(new ItemSendMessage(R.drawable.dog));
+        pictures.add(new ItemSendMessage(R.drawable.dragon));
+        pictures.add(new ItemSendMessage(R.drawable.chicken));
+        pictures.add(new ItemSendMessage(R.drawable.dog));
+        pictures.add(new ItemSendMessage(R.drawable.dragon));
+        pictures.add(new ItemSendMessage(R.drawable.chicken));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(new sendMessageAdapter(getApplicationContext(), pictures));
+
         db = getSharedPreferences(getIntent().getExtras().getString("groupName"), Context.MODE_PRIVATE);
 
         final TextView nMembersSM = (TextView) findViewById(R.id.nMembersSM);
-        nMembersSM.setText(getMembersSM() + " members");
+        nMembersSM.setText(getMembersSM() + " membres");
 
         final TextView titleSM = (TextView) findViewById(R.id.titleSM);
         titleSM.setText(getTitleSM());
@@ -80,8 +102,7 @@ public class sendingMessage extends AppCompatActivity {
     }
 
     public String getTextSM() {
-        // return db.getString("message", "Error");
-        return "Salut ca marche pas encore.";
+        return db.getString("message", "Error");
     }
 
     public void setRandomImagesSM() {

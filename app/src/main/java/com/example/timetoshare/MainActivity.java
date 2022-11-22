@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         String dateTime = dateFormat.format(date);
         edit_userData.putString("startingDate", dateTime);
         edit_userData.putString("lastRepetition", dateTime);
+        edit_userData.putString("message", getString(R.string.LoremIpsum));
 
 
         cal.set(2021, 11,  22);

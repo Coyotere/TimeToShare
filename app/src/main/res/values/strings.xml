@@ -3,6 +3,7 @@
     <string name="add">+</string>
     <string name="channel_name">NotifTTS</string>
     <string name="channel_description">NotifyTTS</string>
+    <string name="LoremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id rhoncus nibh, nec pharetra magna.</string>
 
     <plurals name="member">
         <item quantity="one">1 membre</item>

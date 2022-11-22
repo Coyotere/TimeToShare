@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:backgroundTint="@color/background_color"
+    android:foregroundGravity="center_horizontal"
     tools:context=".sendingMessage">
 
     <LinearLayout
@@ -25,7 +26,8 @@
             android:scaleX="1.5"
             android:scaleY="1.5"
             app:srcCompat="?attr/actionModeCloseDrawable"
-            app:tint="@color/red_TTS" />
+            app:tint="@color/red_TTS"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageView
             android:id="@+id/iconeSM"
@@ -62,44 +64,20 @@
             android:layout_height="246dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@null"
             android:ems="10"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine|textPersonName"
+            android:maxLines="50"
+            android:singleLine="false"
             android:text="Name" />
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSM"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/chicken" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/dragon" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/dog" />
-        </LinearLayout>
 
         <Button
             android:id="@+id/addSM"
