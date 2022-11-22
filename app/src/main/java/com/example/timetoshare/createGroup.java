@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,9 +29,11 @@ public class createGroup extends AppCompatActivity {
 
     private  DatePickerDialog datePickerDialogDepart;
     private  DatePickerDialog datePickerDialogRetour;
-    TextView dateDepart,dateRetour;
+    TextView dateDepart,dateRetour,name,mail;
     EditText titreGroupe;
     GroupAdapter adapter;
+    final Context context = this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,8 @@ public class createGroup extends AppCompatActivity {
 
         List<ItemGroup> items = new ArrayList<ItemGroup>();
 
+        //name = findViewById(R.id.name);
+
         adapter = new GroupAdapter(createGroup.this, items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -72,8 +79,8 @@ public class createGroup extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adapter.notifyDataSetChanged();
                 items.add(new ItemGroup("Nom", "Email"));
+                adapter.notifyDataSetChanged();
             }
         });
 

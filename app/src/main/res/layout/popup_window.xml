@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textColor="@color/black"
-        android:clickable="true"
         android:text="Name"/>
 
     <EditText
@@ -19,15 +18,18 @@
         android:layout_height="40dp"
         android:layout_below="@id/name"
         android:text="Mail"
-        android:clickable="true"
         android:textColor="@color/black" />
 
-   /// ImageButton
-    android:id="@+id/btnSupp"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Sauvegarder"
+        android:layout_marginTop="23dp"
+        android:paddingRight="5dp"
+        android:layout_below="@+id/mail"
+        android:textSize="17sp"
         android:layout_centerInParent="true"
-        android:layout_marginStart="23dp"
-        app:srcCompat="@drawable/ic_minus" />
-    ///
+        style="@style/Widget.AppCompat.Button.Colored" />
+
 </RelativeLayout>
