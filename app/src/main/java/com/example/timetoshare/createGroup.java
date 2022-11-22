@@ -12,10 +12,14 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,24 +28,57 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class createGroup extends AppCompatActivity {
 
     private  DatePickerDialog datePickerDialogDepart;
     private  DatePickerDialog datePickerDialogRetour;
     TextView dateDepart,dateRetour,name,mail;
-    EditText titreGroupe;
+    EditText titreGroupe, zoneMessage;
     GroupAdapter adapter;
     final Context context = this;
-
+    int repetitionChoose;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_group);
 
-        titreGroupe = findViewById(R.id.titreGroupe);
+        //Spinner
+        repetitionChoose = 3;
+        spinner = findViewById(R.id.spinner);
 
+        int[] repet = {3,5,7,14};
+        String[] repetString = {"3 jours", "5 jours", "1 semaine", "2 semaines"};
+        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,repetString );
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapterSpinner);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view,
+                                       int position, long id) {
+                Object item = adapterView.getItemAtPosition(position);
+                if (item != null) {
+                    repetitionChoose = repet[position];
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+
+        titreGroupe = findViewById(R.id.titreGroupe);
+        zoneMessage = findViewById(R.id.zoneMessage);
         Button btnAnnuler = findViewById(R.id.annuler);
         btnAnnuler.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -55,6 +92,7 @@ public class createGroup extends AppCompatActivity {
         btnValider.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                save();
                 finish();
             }
         });
@@ -94,7 +132,8 @@ public class createGroup extends AppCompatActivity {
         edit_userData.putInt("numberMembers", 2);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-        String[] dateText = dateDepart.getText().toString().split(".");
+        String[] dateText = dateDepart.getText().toString().split("[.]");
+
 
         dateText[1] = String.valueOf(getNumMonth(dateText[1]));
 
@@ -105,8 +144,7 @@ public class createGroup extends AppCompatActivity {
         edit_userData.putString("startingDate", dateTime);
         edit_userData.putString("lastRepetition", dateTime);
 
-        dateText = dateRetour.getText().toString().split(".");
-
+        dateText = dateRetour.getText().toString().split("[.]");
         dateText[1] = String.valueOf(getNumMonth(dateText[1]));
 
         cal.set(Integer.parseInt(dateText[2]), Integer.parseInt(dateText[1]), Integer.parseInt(dateText[0]));
@@ -116,16 +154,19 @@ public class createGroup extends AppCompatActivity {
         dateTime = dateFormat.format(date);
         edit_userData.putString("finalDate", dateTime);
 
-        edit_userData.putInt("repetition", 3);
+        edit_userData.putInt("repetition", repetitionChoose);
 
         edit_userData.putInt("image", R.drawable.chicken);
+
+        edit_userData.putString("message", zoneMessage.getText().toString());
+
         edit_userData.commit();
+
 
         userData = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
         edit_userData = userData.edit();
         edit_userData.putString(titreGroupe.getText().toString(), titreGroupe.getText().toString());
         edit_userData.commit();
-
     }
 
     private void initDatePicker(TextView dateView) {
