@@ -4,31 +4,38 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class createGroup extends AppCompatActivity {
 
     private  DatePickerDialog datePickerDialogDepart;
     private  DatePickerDialog datePickerDialogRetour;
-    TextView dateDepart;
-    TextView dateRetour;
+    TextView dateDepart,dateRetour;
+    EditText titreGroupe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_group);
 
+        titreGroupe = findViewById(R.id.titreGroupe);
 
         Button btnAnnuler = findViewById(R.id.annuler);
         btnAnnuler.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                save();
                 finish();
             }
         });
@@ -46,6 +53,48 @@ public class createGroup extends AppCompatActivity {
 
         initDatePicker(dateDepart);
         initDatePicker(dateRetour);
+
+    }
+
+    private void save() {
+
+        SharedPreferences userData = getSharedPreferences(titreGroupe.getText().toString(), Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit_userData = userData.edit();
+
+        edit_userData.putInt("numberMembers", 2);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+        String[] dateText = dateDepart.getText().toString().split(".");
+
+        dateText[1] = String.valueOf(getNumMonth(dateText[1]));
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Integer.parseInt(dateText[2]), Integer.parseInt(dateText[1]), Integer.parseInt(dateText[0]));
+        Date date = cal.getTime();
+        String dateTime = dateFormat.format(date);
+        edit_userData.putString("startingDate", dateTime);
+        edit_userData.putString("lastRepetition", dateTime);
+
+        dateText = dateRetour.getText().toString().split(".");
+
+        dateText[1] = String.valueOf(getNumMonth(dateText[1]));
+
+        cal.set(Integer.parseInt(dateText[2]), Integer.parseInt(dateText[1]), Integer.parseInt(dateText[0]));
+
+        date = cal.getTime();
+
+        dateTime = dateFormat.format(date);
+        edit_userData.putString("finalDate", dateTime);
+
+        edit_userData.putInt("repetition", 3);
+
+        edit_userData.putInt("image", R.drawable.chicken);
+        edit_userData.commit();
+
+        userData = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
+        edit_userData = userData.edit();
+        edit_userData.putString(titreGroupe.getText().toString(), titreGroupe.getText().toString());
+        edit_userData.commit();
 
     }
 
@@ -79,6 +128,7 @@ public class createGroup extends AppCompatActivity {
         return day + "." +  getMonthFormat(month) + "." + year;
     }
 
+
     private String getMonthFormat(int month) {
         switch (month) {
             case 1:
@@ -105,6 +155,35 @@ public class createGroup extends AppCompatActivity {
                 return "Novembre";
             default:
                 return "Décembre";
+        }
+    }
+
+    private int getNumMonth(String month) {
+        switch (month) {
+            case "Janvier":
+                return 0;
+            case "Février":
+                return 1;
+            case "Mars":
+                return 2;
+            case "Avril":
+                return 3;
+            case  "Mai":
+                return 4;
+            case "Juin":
+                return 5;
+            case "Juillet":
+                return 6;
+            case "Aout":
+                return 7;
+            case "Septembre":
+                return 8;
+            case "Octobre":
+                return 9;
+            case "Novembre":
+                return 10;
+            default:
+                return 11;
         }
     }
 
