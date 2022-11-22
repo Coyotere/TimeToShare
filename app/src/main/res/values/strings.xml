@@ -12,5 +12,11 @@
 
     <string name="textWithoutGroup">Ajouter un nouveau groupe</string>
 
+    <string-array name="repetition">
+        <item>3 jours</item>
+        <item>5 jours</item>
+        <item>1 semaine</item>
+        <item>2 semaines</item>
+    </string-array>
 
 </resources>

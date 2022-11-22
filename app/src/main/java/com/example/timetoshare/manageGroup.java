@@ -4,45 +4,106 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 public class manageGroup extends AppCompatActivity {
 
+    private DatePickerDialog datePickerDialogDepart;
+    private  DatePickerDialog datePickerDialogRetour;
+    TextView dateDepart,dateRetour;
+    EditText zoneMessage;
     ImageView img;
-    TextView titre, date, zoneMessage;
+    EditText titre;
     ImageButton supUser;
     SharedPreferences db;
     GroupAdapter adapter;
+    int repetitionChoose;
+    String initialTitle;
+    Button valider;
+
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_group);
-
         db = getSharedPreferences(getIntent().getExtras().getString("groupName"), Context.MODE_PRIVATE);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
+
+        spinner = findViewById(R.id.spinner);
+
+        int[] repet = {3,5,7,14};
+        String[] repetString = {"3 jours", "5 jours", "1 semaine", "2 semaines"};
+        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,repetString );
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapterSpinner);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view,
+                                       int position, long id) {
+                Object item = adapterView.getItemAtPosition(position);
+                if (item != null) {
+                    repetitionChoose = repet[position];
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+
+        zoneMessage = findViewById(R.id.zoneMessage);
+        zoneMessage.setText(getTextSM());
 
         img = findViewById(R.id.imageGroupe);
         img.setImageResource(getImageSM());
 
         titre = findViewById(R.id.titreGroupe);
         titre.setText(getTitleSM());
+        initialTitle = getTitleSM();
 
-        date = findViewById(R.id.dateGroupe);
+        repetitionChoose = db.getInt("repetition", 0);
+
+        int pos = -1;
+        for(int i = 0; i < repet.length; i++) {
+            if(repet[i] == repetitionChoose) {
+                pos = i;
+                break;
+            }
+        }
+        spinner.setSelection(pos);
+
 
         Date startingDate = null;
         try {
@@ -59,7 +120,7 @@ public class manageGroup extends AppCompatActivity {
         }
 
 
-        date.setText(startingDate.toString() + " - " + finalDate.toString());
+
 
         RecyclerView recyclerView = findViewById(R.id.recycleView);
 
@@ -81,6 +142,16 @@ public class manageGroup extends AppCompatActivity {
             }
         });
 
+        Button save = (Button) findViewById(R.id.SaveManage);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                save();
+                finish();
+
+            }
+        });
+
 
         //supUser = (ImageButton) findViewById(R.id.btnSupp);
         //supUser.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +162,87 @@ public class manageGroup extends AppCompatActivity {
            // }
         //});
 
+        dateDepart = findViewById(R.id.dateDepartManage);
 
+        dateRetour = findViewById(R.id.dateRetourManage);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startingDate);
+        dateDepart.setText(makeDateString(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)));
+
+        cal.setTime(finalDate);
+        dateRetour.setText(makeDateString(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)));
+
+
+
+        initDatePicker(dateDepart);
+
+        initDatePicker(dateRetour);
+
+    }
+
+    private void save() {
+
+
+        SharedPreferences userData = getSharedPreferences(initialTitle, Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit_userData = userData.edit();
+        edit_userData.clear();
+
+        userData = getSharedPreferences(titre.getText().toString(), Context.MODE_PRIVATE);
+        edit_userData = userData.edit();
+
+
+        edit_userData.putInt("numberMembers", 2);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+        String[] dateText = dateDepart.getText().toString().split(" ");
+
+        dateText[1] = String.valueOf(getNumMonth(dateText[1]));
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Integer.parseInt(dateText[2]), Integer.parseInt(dateText[1]), Integer.parseInt(dateText[0]));
+        Date date = cal.getTime();
+        String dateTime = dateFormat.format(date);
+        edit_userData.putString("startingDate", dateTime);
+        edit_userData.putString("lastRepetition", dateTime);
+
+
+
+        dateText = dateRetour.getText().toString().split(" ");
+        dateText[1] = String.valueOf(getNumMonth(dateText[1]));
+
+
+        cal.set(Integer.parseInt(dateText[2]), Integer.parseInt(dateText[1]), Integer.parseInt(dateText[0]));
+
+        date = cal.getTime();
+
+        dateTime = dateFormat.format(date);
+        edit_userData.putString("finalDate", dateTime);
+
+        edit_userData.putInt("repetition", repetitionChoose);
+
+        edit_userData.putInt("image", R.drawable.chicken);
+
+        edit_userData.putString("message", zoneMessage.getText().toString());
+
+        edit_userData.commit();
+
+
+
+
+
+        userData = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
+        edit_userData = userData.edit();
+
+        edit_userData.remove(initialTitle);
+
+        edit_userData.putString(titre.getText().toString(), titre.getText().toString());
+        edit_userData.commit();
+
+    }
+
+    private String getTextSM() {
+        return db.getString("message", null);
     }
 
     public int getMembersSM() {
@@ -105,4 +256,102 @@ public class manageGroup extends AppCompatActivity {
         return db.getInt("image", 0);
     }
 
+    private void initDatePicker(TextView dateView) {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                dateView.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        if(dateView == dateDepart){
+            datePickerDialogDepart = new DatePickerDialog(this,style, dateSetListener, year, month, day);
+        }
+        else{
+            datePickerDialogRetour = new DatePickerDialog(this,style, dateSetListener, year, month, day);
+
+        }
+    }
+
+    private String makeDateString(int day, int month, int year) {
+        return day + " " +  getMonthFormat(month) + " " + year;
+    }
+
+
+    private String getMonthFormat(int month) {
+        switch (month) {
+            case 1:
+                return "Janvier";
+            case 2:
+                return "Février";
+            case 3:
+                return "Mars";
+            case 4:
+                return "Avril";
+            case 5:
+                return "Mai";
+            case 6:
+                return "Juin";
+            case 7:
+                return "Juillet";
+            case 8:
+                return "Aout";
+            case 9:
+                return "Septembre";
+            case 10:
+                return "Octobre";
+            case 11:
+                return "Novembre";
+            default:
+                return "Décembre";
+        }
+    }
+
+    private int getNumMonth(String month) {
+        switch (month) {
+            case "Janvier":
+                return 0;
+            case "Février":
+                return 1;
+            case "Mars":
+                return 2;
+            case "Avril":
+                return 3;
+            case  "Mai":
+                return 4;
+            case "Juin":
+                return 5;
+            case "Juillet":
+                return 6;
+            case "Aout":
+                return 7;
+            case "Septembre":
+                return 8;
+            case "Octobre":
+                return 9;
+            case "Novembre":
+                return 10;
+            default:
+                return 11;
+        }
+    }
+
+    public void openDatePicker(View view) {
+        if(view.getId() == R.id.dateDepartManage){
+            datePickerDialogDepart.show();
+        }
+        else{
+            datePickerDialogRetour.show();
+        }
+
+    }
 }

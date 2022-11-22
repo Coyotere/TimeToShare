@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         items = new ArrayList<ItemMainActivity>();
         withoutGroup = (TextView) findViewById(R.id.textWithoutGroup);
         groupsName = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
@@ -99,9 +99,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void manageRecycleView(){
+        groupsName = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
         items.clear();
-        for(Map.Entry<String, ?> group : groupsName.getAll().entrySet())
-            items.add(new ItemMainActivity(group.getKey(),this));
+        for(Map.Entry<String, ?> group : groupsName.getAll().entrySet()) {
+            System.out.println(group.getKey());
+            items.add(new ItemMainActivity(group.getKey(), this));
+        }
         System.out.println("taille" + items.size());
         withoutGroup.setVisibility(items.size() > 0 ? View.INVISIBLE: View.VISIBLE);
 
