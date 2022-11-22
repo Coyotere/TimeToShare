@@ -5,11 +5,16 @@
       <map>
         <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/drawable/around_button_red.xml" value="0.346" />
         <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/drawable/around_zone_text.xml" value="0.346" />
+        <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/drawable/ic_add.xml" value="0.3255" />
+        <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3255" />
+        <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/drawable/ic_minus.xml" value="0.3255" />
         <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/layout/activity_create_group.xml" value="0.32065217391304346" />
         <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/layout/activity_main.xml" value="0.32065217391304346" />
         <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/layout/activity_manage_group.xml" value="0.32065217391304346" />
+        <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/layout/item_group_view.xml" value="0.3446557971014493" />
+        <entry key="..\:/Users/flore/Desktop/COURS_UQAC/PLATEFORME_MOBILE/TimeToShare/app/src/main/res/layout/item_main.xml" value="0.3446557971014493" />
         <entry key="..\:/Users/thoma/AndroidStudioProjects/TimeToShare/app/src/main/res/layout/activity_main.xml" value="0.2875" />
-        <entry key="..\:/Users/thoma/AndroidStudioProjects/TimeToShare/app/src/main/res/layout/activity_sending_message.xml" value="0.25" />
+        <entry key="..\:/Users/thoma/AndroidStudioProjects/TimeToShare/app/src/main/res/layout/activity_sending_message.xml" value="0.33" />
         <entry key="..\:/Users/thoma/AndroidStudioProjects/TimeToShare/app/src/main/res/layout/sendingRequest.xml" value="0.2866847826086957" />
       </map>
     </option>
