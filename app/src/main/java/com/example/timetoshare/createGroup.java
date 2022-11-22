@@ -1,6 +1,8 @@
 package com.example.timetoshare;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -11,11 +13,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class createGroup extends AppCompatActivity {
 
@@ -23,6 +28,7 @@ public class createGroup extends AppCompatActivity {
     private  DatePickerDialog datePickerDialogRetour;
     TextView dateDepart,dateRetour;
     EditText titreGroupe;
+    GroupAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,23 @@ public class createGroup extends AppCompatActivity {
 
         initDatePicker(dateDepart);
         initDatePicker(dateRetour);
+
+        RecyclerView recyclerView = findViewById(R.id.recycleViewCreate);
+
+        List<ItemGroup> items = new ArrayList<ItemGroup>();
+
+        adapter = new GroupAdapter(createGroup.this, items);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        ImageButton btnAdd = (ImageButton) findViewById(R.id.btnAddUsersCreate);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.notifyDataSetChanged();
+                items.add(new ItemGroup("Nom", "Email"));
+            }
+        });
 
     }
 

@@ -19,6 +19,6 @@ public class GroupHolder extends RecyclerView.ViewHolder {
 
         name = itemView.findViewById(R.id.name);
         mail = itemView.findViewById(R.id.mail);
-        btnSupp = itemView.findViewById(R.id.btnSupp);
+        //btnSupp = itemView.findViewById(R.id.btnSupp);
     }
 }

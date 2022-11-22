@@ -77,7 +77,7 @@ public class manageGroup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 adapter.notifyDataSetChanged();
-                items.add(new ItemGroup("Michou", "michdu12@mail.com"));
+                items.add(new ItemGroup("Nom", "Mail"));
             }
         });
 
