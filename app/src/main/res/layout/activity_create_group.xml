@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".createGroup"
     android:background="@color/background_color">
 
     <LinearLayout
@@ -16,34 +16,80 @@
             android:id="@+id/imageGroupe"
             android:layout_width="match_parent"
             android:layout_height="74dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:layout_marginTop="10dp"/>
 
-        <TextView
+        <EditText
             android:id="@+id/titreGroupe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ceci est un titre"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textColor="@color/red_TTS"
+            android:hint="Nom groupe"
             android:shadowColor="@color/black"
             android:shadowDx="1.2"
             android:shadowDy="1.2"
-            android:shadowRadius="1.2"/>
+            android:shadowRadius="1.2"
+            android:textAlignment="center"
+            android:textColor="@color/red_TTS"
+            android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/dateGroupe"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Date"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/red_TTS"
-            android:shadowColor="@color/black"
-            android:shadowDx="1.2"
-            android:shadowDy="1.2"
-            android:shadowRadius="1.2"            />
+            android:gravity="clip_horizontal|center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dateDepart"
+                style="?android:spinnerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="1.2"
+                android:shadowDy="1.2"
+                android:shadowRadius="1.2"
+                android:text="Date départ"
+                android:textAlignment="textEnd"
+                android:textColor="@color/red_TTS"
+                android:textSize="20sp"
+                android:onClick="openDatePicker"
+                />
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="1.2"
+                android:shadowDy="1.2"
+                android:shadowRadius="1.2"
+                android:text="."
+                android:textAlignment="textStart"
+                android:textColor="@color/red_TTS"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/dateRetour"
+                style="?android:spinnerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="1.2"
+                android:shadowDy="1.2"
+                android:shadowRadius="1.2"
+                android:text="Date Retour"
+                android:textAlignment="center"
+                android:textColor="@color/red_TTS"
+                android:textSize="20sp"
+                android:onClick="openDatePicker"
+                />
+        </LinearLayout>
+
+
         <TextView
             android:id="@+id/repeat"
             android:layout_width="match_parent"
@@ -57,29 +103,38 @@
             android:shadowDx="1.2"
             android:shadowDy="1.2"
             android:shadowRadius="1.2"/>
-        <ListView
-            android:id="@+id/listUsers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewCreate"
+            android:layout_width="300dp"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddUsers"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_gravity="center"/>
+
 
         <ImageButton
-            android:id="@+id/btnAddUsers"
+            android:id="@+id/btnAddUsersCreate"
             android:layout_width="75dp"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:background="@drawable/around_button_red"
             app:srcCompat="@drawable/ic_add"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-        <TextView
+        <EditText
             android:id="@+id/zoneMessage"
             android:layout_width="380dp"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/around_zone_text"
             android:inputType="textMultiLine"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:textAlignment="center"
+            android:textSize="15dp"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mauris libero, lobortis eu consectetur et, venenatis vel odio. Aenean rhoncus libero eget nunc faucibus, a gravida ipsum eleifend. Quisque vel posuere elit. Nulla semper arcu imperdiet nulla faucibus vulputate. Suspendisse pretium vitae mi non volutpat. Maecenas sed pellentesque quam. Nunc ultrices, dolor sed dignissim aliquet, justo purus placerat risus, eu accumsan eros arcu vitae mauris. In ut ipsum arcu."/>
+
 
         <ImageButton
             android:id="@+id/refreshMessage"
@@ -102,9 +157,10 @@
                 android:layout_height="40dp"
                 android:layout_gravity="start"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/around_button_red"
-                android:text="annuler"
+                android:textAllCaps="false"
+                android:text="Annuler"
                 android:textSize="13dp"
+                android:background="@drawable/around_button_red"
                 tools:ignore="TouchTargetSizeCheck" />
             <Space
                 android:layout_width="200dp"
@@ -116,7 +172,8 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/around_zone_text"
-                android:text="valider"
+                android:textAllCaps="false"
+                android:text="Valider"
                 android:textSize="13dp"
                 tools:ignore="TouchTargetSizeCheck" />
 
