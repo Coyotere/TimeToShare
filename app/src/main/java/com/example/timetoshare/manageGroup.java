@@ -94,9 +94,16 @@ public class manageGroup extends AppCompatActivity {
         initialTitle = getTitleSM();
 
         repetitionChoose = db.getInt("repetition", 0);
-        System.out.println(repetitionChoose);
-        spinner.setSelection(Arrays.asList(repet).indexOf(repetitionChoose));
-        //date = findViewById(R.id.dateDepartManage);
+
+        int pos = -1;
+        for(int i = 0; i < repet.length; i++) {
+            if(repet[i] == repetitionChoose) {
+                pos = i;
+                break;
+            }
+        }
+        spinner.setSelection(pos);
+
 
         Date startingDate = null;
         try {
@@ -113,7 +120,6 @@ public class manageGroup extends AppCompatActivity {
         }
 
 
-        //date.setText(startingDate.toString() + " - " + finalDate.toString());
 
 
         RecyclerView recyclerView = findViewById(R.id.recycleView);
@@ -143,8 +149,6 @@ public class manageGroup extends AppCompatActivity {
                 save();
                 finish();
 
-                //adapter.notifyDataSetChanged();
-                //items.add(new ItemGroup("Michou", "michdu12@mail.com"));
             }
         });
 
@@ -188,12 +192,10 @@ public class manageGroup extends AppCompatActivity {
         edit_userData = userData.edit();
 
 
-
         edit_userData.putInt("numberMembers", 2);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-        String[] dateText = dateDepart.getText().toString().split("[.]");
-
+        String[] dateText = dateDepart.getText().toString().split(" ");
 
         dateText[1] = String.valueOf(getNumMonth(dateText[1]));
 
@@ -204,8 +206,11 @@ public class manageGroup extends AppCompatActivity {
         edit_userData.putString("startingDate", dateTime);
         edit_userData.putString("lastRepetition", dateTime);
 
-        dateText = dateRetour.getText().toString().split("[.]");
+
+
+        dateText = dateRetour.getText().toString().split(" ");
         dateText[1] = String.valueOf(getNumMonth(dateText[1]));
+
 
         cal.set(Integer.parseInt(dateText[2]), Integer.parseInt(dateText[1]), Integer.parseInt(dateText[0]));
 
@@ -225,6 +230,7 @@ public class manageGroup extends AppCompatActivity {
 
 
 
+
         userData = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
         edit_userData = userData.edit();
 
@@ -232,6 +238,7 @@ public class manageGroup extends AppCompatActivity {
 
         edit_userData.putString(titre.getText().toString(), titre.getText().toString());
         edit_userData.commit();
+
     }
 
     private String getTextSM() {

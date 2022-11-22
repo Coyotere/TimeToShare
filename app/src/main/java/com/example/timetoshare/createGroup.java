@@ -132,7 +132,7 @@ public class createGroup extends AppCompatActivity {
         edit_userData.putInt("numberMembers", 2);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-        String[] dateText = dateDepart.getText().toString().split("[.]");
+        String[] dateText = dateDepart.getText().toString().split(" ");
 
 
         dateText[1] = String.valueOf(getNumMonth(dateText[1]));
@@ -144,7 +144,7 @@ public class createGroup extends AppCompatActivity {
         edit_userData.putString("startingDate", dateTime);
         edit_userData.putString("lastRepetition", dateTime);
 
-        dateText = dateRetour.getText().toString().split("[.]");
+        dateText = dateRetour.getText().toString().split(" ");
         dateText[1] = String.valueOf(getNumMonth(dateText[1]));
 
         cal.set(Integer.parseInt(dateText[2]), Integer.parseInt(dateText[1]), Integer.parseInt(dateText[0]));
@@ -196,7 +196,7 @@ public class createGroup extends AppCompatActivity {
     }
 
     private String makeDateString(int day, int month, int year) {
-        return day + "." +  getMonthFormat(month) + "." + year;
+        return day + " " +  getMonthFormat(month) + " " + year;
     }
 
 
