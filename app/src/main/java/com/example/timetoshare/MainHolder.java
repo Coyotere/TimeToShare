@@ -41,6 +41,7 @@ public class MainHolder extends RecyclerView.ViewHolder {
                 System.out.println("Click sur Bell");
                 Intent myIntent = new Intent(context, manageGroup.class);
                 myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myIntent.putExtra("groupName", nameView.getText().toString());
                 context.startActivity(myIntent);
             }
         });
