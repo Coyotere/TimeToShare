@@ -7,208 +7,239 @@
     tools:context=".createGroup"
     android:background="@color/background_color">
 
-    <LinearLayout
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="0dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:contentDescription="@string/add"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tiger" />
+
+    <EditText
+        android:id="@+id/titreGroupe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/red_TTS"
+        android:hint="@string/groupName"
+        android:shadowColor="@color/red_TTS"
+        android:shadowDx="1.2"
+        android:shadowDy="1.2"
+        android:shadowRadius="1.2"
+        android:textAlignment="center"
+        android:textColor="@color/red_TTS"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:layout_marginTop="10dp"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:backgroundTint="@null"
-            android:contentDescription="@string/add"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/tiger" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="clip_horizontal|center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titreGroupe">
 
-        <EditText
-            android:id="@+id/titreGroupe"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/dateDepart"
+            style="?android:spinnerStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:backgroundTint="@color/red_TTS"
-            android:hint="@string/groupName"
-            android:shadowColor="@color/red_TTS"
+            android:layout_marginTop="10dp"
+            android:onClick="openDatePicker"
+            android:shadowColor="@color/black"
             android:shadowDx="1.2"
             android:shadowDy="1.2"
             android:shadowRadius="1.2"
+            android:text="@string/dateDepart"
+            android:textAlignment="textEnd"
+            android:textColor="@color/red_TTS"
+            android:textSize="16sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.2"
+            android:shadowDy="1.2"
+            android:shadowRadius="1.2"
+            android:text="@string/separateurDate"
+            android:textAlignment="textStart"
+            android:textColor="@color/red_TTS"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/dateRetour"
+            style="?android:spinnerStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:onClick="openDatePicker"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.2"
+            android:shadowDy="1.2"
+            android:shadowRadius="1.2"
+            android:text="@string/dateRetour"
             android:textAlignment="center"
             android:textColor="@color/red_TTS"
-            android:textSize="24sp" />
+            android:textSize="16sp"
+            tools:ignore="TouchTargetSizeCheck" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/repeat"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="clip_horizontal|center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/dateDepart"
-                style="?android:spinnerStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:onClick="openDatePicker"
-                android:shadowColor="@color/black"
-                android:shadowDx="1.2"
-                android:shadowDy="1.2"
-                android:shadowRadius="1.2"
-                android:text="@string/dateDepart"
-                android:textAlignment="textEnd"
-                android:textColor="@color/red_TTS"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
-
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:shadowColor="@color/black"
-                android:shadowDx="1.2"
-                android:shadowDy="1.2"
-                android:shadowRadius="1.2"
-                android:text="@string/separateurDate"
-                android:textAlignment="textStart"
-                android:textColor="@color/red_TTS"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/dateRetour"
-                style="?android:spinnerStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:onClick="openDatePicker"
-                android:shadowColor="@color/black"
-                android:shadowDx="1.2"
-                android:shadowDy="1.2"
-                android:shadowRadius="1.2"
-                android:text="@string/dateRetour"
-                android:textAlignment="center"
-                android:textColor="@color/red_TTS"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/repeat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:shadowColor="@color/black"
-                android:shadowDx="1.2"
-                android:shadowDy="1.2"
-                android:shadowRadius="1.2"
-                android:text="@string/repeterTout"
-                android:textAlignment="center"
-                android:textColor="@color/red_TTS"
-                android:textSize="20sp" />
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/red_TTS"
-                android:entries="@array/repetition"
-                android:foregroundTint="@color/red_TTS"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewCreate"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnAddUsers"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_gravity="center"/>
-
-
-        <ImageButton
-            android:id="@+id/btnAddUsersCreate"
-            android:layout_width="75dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:background="@drawable/around_button_red"
-            app:srcCompat="@drawable/ic_add"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        <EditText
-            android:id="@+id/zoneMessage"
-            android:layout_width="380dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@drawable/around_zone_text"
-            android:inputType="textMultiLine"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mauris libero, lobortis eu consectetur et, venenatis vel odio. Aenean rhoncus libero eget nunc faucibus, a gravida ipsum eleifend. Quisque vel posuere elit. Nulla semper arcu imperdiet nulla faucibus vulputate. Suspendisse pretium vitae mi non volutpat. Maecenas sed pellentesque quam. Nunc ultrices, dolor sed dignissim aliquet, justo purus placerat risus, eu accumsan eros arcu vitae mauris. In ut ipsum arcu."
+            android:shadowColor="@color/black"
+            android:shadowDx="1.2"
+            android:shadowDy="1.2"
+            android:shadowRadius="1.2"
+            android:text="@string/repeterTout"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:textColor="@color/red_TTS"
+            android:textSize="20sp" />
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/red_TTS"
+            android:entries="@array/repetition"
+            android:foregroundGravity="center"
+            android:foregroundTint="@color/red_TTS"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/refreshMessage"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewCreate"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageButton
+        android:id="@+id/btnAddUsersCreate"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/around_button_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycleViewCreate"
+        app:srcCompat="@drawable/ic_add"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/zoneMessage"
+        android:layout_width="380dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/around_zone_text"
+        android:inputType="textMultiLine"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mauris libero, lobortis eu consectetur et, venenatis vel odio. Aenean rhoncus libero eget nunc faucibus, a gravida ipsum eleifend. Quisque vel posuere elit. Nulla semper arcu imperdiet nulla faucibus vulputate. Suspendisse pretium vitae mi non volutpat. Maecenas sed pellentesque quam. Nunc ultrices, dolor sed dignissim aliquet, justo purus placerat risus, eu accumsan eros arcu vitae mauris. In ut ipsum arcu."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddUsersCreate"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/refreshMessage"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/around_button_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zoneMessage"
+        app:srcCompat="@drawable/ic_refresh"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/refreshMessage">
+
+        <android.widget.Button
+            android:id="@+id/annuler"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
             android:background="@drawable/around_button_red"
-            app:srcCompat="@drawable/ic_refresh"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:text="Annuler"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textSize="13dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
-            <Button
-                android:id="@+id/annuler"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="30dp"
-                android:background="@drawable/around_button_red"
-                android:text="Annuler"
-                android:textAllCaps="false"
-                android:textSize="13dp"
-                tools:ignore="TouchTargetSizeCheck" />
-            <Space
-                android:layout_width="100dp"
-                android:layout_height="match_parent"/>
+        <Space
+            android:layout_width="100dp"
+            android:layout_height="match_parent" />
 
-            <Button
-                android:id="@+id/valider"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:background="@drawable/around_zone_text"
-                android:text="Valider"
-                android:textAllCaps="false"
-                android:layout_marginRight="30dp"
-                android:textSize="13dp"
-                tools:ignore="TouchTargetSizeCheck" />
+        <android.widget.Button
+            android:id="@+id/valider"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:textColor="@color/white"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/around_zone_text"
+            android:text="Valider"
+            android:textAllCaps="false"
+            android:textSize="13dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
-
-        </LinearLayout>
 
     </LinearLayout>
 
