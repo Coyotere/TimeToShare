@@ -14,11 +14,11 @@ public class GroupHolder extends RecyclerView.ViewHolder {
     ImageButton btnSupp;
 
 
-    public GroupHolder(@NonNull View itemView) {
+    public GroupHolder(@NonNull View itemView, PopupContact popupContact) {
         super(itemView);
 
         name = itemView.findViewById(R.id.name);
-        mail = itemView.findViewById(R.id.mail);
+        //mail = itemView.findViewById(R.id.mail);
         //btnSupp = itemView.findViewById(R.id.btnSupp);
     }
 }

@@ -20,10 +20,15 @@ public class PopupContact extends PopupWindow {
     EditText name,mail;
     Button save;
     public Boolean newContact;
+    private Boolean modifiContact;
+    public Boolean contactModified;
+    public int numItem;
+    private View view;
 
-    public PopupContact(Context ctx) {
+    public PopupContact(Context ctx, View v) {
         super(ctx);
         context = ctx;
+        view = v;
         setContentView(LayoutInflater.from(context).inflate(R.layout.activity_popup_contact, null));
 
         setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
@@ -38,29 +43,51 @@ public class PopupContact extends PopupWindow {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!getMail().equals("") && !getName().equals("")){
-                    newContact = true;
-                    dismiss();
+                if(getMail().equals("") && getName().equals("")){
+                    Toast.makeText(context, "Tout les champs doivent être complété", Toast.LENGTH_SHORT).show();
+
+                }
+                else if(numIteration(getMail()) != 1){
+                    Toast.makeText(context, "Veuillez rentré une adresse valide", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(context, "Tout les champs doivent être complété", Toast.LENGTH_SHORT).show();
+                    if(!modifiContact) {
+                        newContact = true;
+                    }
+                    else {
+                        contactModified = true;
+                    }
+                    dismiss();
                 }
             }
         });
     }
 
+    private int numIteration(String mail){
+        int num = 0;
+        for(int index = mail.indexOf("@"); index >= 1; index = mail.indexOf("@",index + 1)){
+            num ++;
+        }
+        return num;
+    }
+
     public void show(View v) {
         name.setText("");
         mail.setText("");
-        showAtLocation(v, Gravity.CENTER, 0, 0);
+        showAtLocation(view, Gravity.CENTER, 0, 0);
         newContact = false;
-
+        modifiContact = false;
+        contactModified = false;
     }
-    public void show(View v, String name, String mail){
+
+    public void show(View v, String name, String mail, int numItem){
         this.name.setText(name);
         this.mail.setText(mail);
-        showAtLocation(v, Gravity.CENTER, 0, 0);
+        showAtLocation(view, Gravity.CENTER, 0, 0);
         newContact = false;
+        modifiContact = true;
+        this.numItem = numItem;
+        contactModified = false;
     }
 
     public String getName(){
