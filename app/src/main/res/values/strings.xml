@@ -13,10 +13,20 @@
     <string name="textWithoutGroup">Ajouter un nouveau groupe</string>
 
     <string-array name="repetition">
+        <item>1 jour</item>
         <item>3 jours</item>
         <item>5 jours</item>
         <item>1 semaine</item>
         <item>2 semaines</item>
+    </string-array>
+    
+    <string-array name="textAlea">
+        <item>premier texte</item>
+        <item>deuxieme texte</item>
+        <item>troisieme texte</item>
+        <item>quatrieme texte</item>
+        <item>cinquieme texte</item>
+        <item>sixieme texte</item>
     </string-array>
 
     <string name="groupName">Nom du groupe</string>

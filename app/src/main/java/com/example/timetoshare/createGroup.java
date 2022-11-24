@@ -29,6 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class createGroup extends AppCompatActivity {
 
@@ -41,17 +42,21 @@ public class createGroup extends AppCompatActivity {
     int repetitionChoose;
     Spinner spinner;
 
+    private String[] textAlea;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_group);
 
+        textAlea = getResources().getStringArray(R.array.textAlea);
+
         //Spinner
         repetitionChoose = 3;
         spinner = findViewById(R.id.spinner);
 
-        int[] repet = {3,5,7,14};
-        String[] repetString = {"3 jours", "5 jours", "1 semaine", "2 semaines"};
+        int[] repet = {1,3,5,7,14};
+        String[] repetString = {"1 jour", "3 jours", "5 jours", "1 semaine", "2 semaines"};
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,repetString );
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
@@ -79,6 +84,7 @@ public class createGroup extends AppCompatActivity {
 
         titreGroupe = findViewById(R.id.titreGroupe);
         zoneMessage = findViewById(R.id.zoneMessage);
+        zoneMessage.setText(getTextAlea());
         Button btnAnnuler = findViewById(R.id.annuler);
         btnAnnuler.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -95,6 +101,14 @@ public class createGroup extends AppCompatActivity {
                 if(save()){
                     finish();
                 }
+            }
+        });
+
+        ImageButton refreshText = findViewById(R.id.refreshMessage);
+        refreshText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                zoneMessage.setText(getTextAlea());
             }
         });
 
@@ -123,6 +137,11 @@ public class createGroup extends AppCompatActivity {
             }
         });
 
+    }
+
+    private String getTextAlea(){
+        int randomIndex = new Random().nextInt(textAlea.length);
+        return textAlea[randomIndex];
     }
 
     private boolean save() {

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class manageGroup extends AppCompatActivity {
 
@@ -43,6 +44,8 @@ public class manageGroup extends AppCompatActivity {
     String initialTitle;
     Button valider;
 
+    private String[] textAlea;
+
     Spinner spinner;
 
     @Override
@@ -52,11 +55,12 @@ public class manageGroup extends AppCompatActivity {
         db = getSharedPreferences(getIntent().getExtras().getString("groupName"), Context.MODE_PRIVATE);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
+        textAlea = getResources().getStringArray(R.array.textAlea);
 
         spinner = findViewById(R.id.spinner);
 
-        int[] repet = {3,5,7,14};
-        String[] repetString = {"3 jours", "5 jours", "1 semaine", "2 semaines"};
+        int[] repet = {1,3,5,7,14};
+        String[] repetString = {"1 jour","3 jours", "5 jours", "1 semaine", "2 semaines"};
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,repetString );
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
@@ -126,9 +130,6 @@ public class manageGroup extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
         RecyclerView recyclerView = findViewById(R.id.recycleView);
 
         List<ItemGroup> items = new ArrayList<ItemGroup>();
@@ -159,6 +160,14 @@ public class manageGroup extends AppCompatActivity {
             }
         });
 
+        ImageButton refreshText = findViewById(R.id.refreshMessage);
+        refreshText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                zoneMessage.setText(getTextAlea());
+            }
+        });
+
 
         //supUser = (ImageButton) findViewById(R.id.btnSupp);
         //supUser.setOnClickListener(new View.OnClickListener() {
@@ -186,6 +195,11 @@ public class manageGroup extends AppCompatActivity {
 
         initDatePicker(dateRetour);
 
+    }
+
+    private String getTextAlea(){
+        int randomIndex = new Random().nextInt(textAlea.length);
+        return textAlea[randomIndex];
     }
 
     private boolean save() {

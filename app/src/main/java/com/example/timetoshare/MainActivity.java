@@ -39,44 +39,9 @@ public class MainActivity extends AppCompatActivity {
         groupsName = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
 
 
-        SharedPreferences userData = getSharedPreferences("test", Context.MODE_PRIVATE);
-//
-
-        SharedPreferences.Editor edit_userData = userData.edit();
-        edit_userData.putInt("numberMembers", 2);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-        Calendar cal = Calendar.getInstance();
-        cal.set(2022, 10,  15);
-        Date date = cal.getTime();
-        String dateTime = dateFormat.format(date);
-        edit_userData.putString("startingDate", dateTime);
-        edit_userData.putString("lastRepetition", dateTime);
-        edit_userData.putString("message", getString(R.string.LoremIpsum));
-
-
-        cal.set(2021, 11,  22);
-        date = cal.getTime();
-
-        dateTime = dateFormat.format(date);
-        edit_userData.putString("finalDate", dateTime);
-
-        edit_userData.putInt("repetition", 3);
-
-        edit_userData.putInt("image", R.drawable.chicken);
+        SharedPreferences.Editor edit_userData = groupsName.edit();
+        edit_userData.clear();
         edit_userData.commit();
-
-        //items.add(new ItemMainActivity("test", this));
-        //items.add(new ItemMainActivity("Blazy's Family", 1,R.drawable.chicken, true, 1));
-        //items.add(new ItemMainActivity("Gang de Grenouille", 5,R.drawable.chicken, false, 0));
-        //items.add(new ItemMainActivity("Blazy's Family", 3,R.drawable.chicken, false, 0));
-//
-        edit_userData = groupsName.edit();
-        edit_userData.putString("test", "test");
-        edit_userData.commit();
-
-        // edit_userData.clear();
-        // edit_userData.commit();
 
 
         recyclerView = findViewById(R.id.recycleViewMain);
