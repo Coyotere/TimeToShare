@@ -133,8 +133,10 @@ public class createGroup extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(createGroup.this, PopupContact.class));
-                //items.add(new ItemGroup("Nom", "Email"));
+                PopupContact popupContact = new PopupContact(getBaseContext());
+                popupContact.show(view);
+                //startActivity(new Intent(createGroup.this, PopupContact.class));
+                //items.add(new ItemGroup("Nom", "sEmail"));
                 //adapter.notifyDataSetChanged();
             }
         });

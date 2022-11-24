@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_color">#FCF1E3</color>
     <color name="red_TTS">#CF3E2F</color>
+    <color name="popup_background">#B3B3B3</color>
 </resources>

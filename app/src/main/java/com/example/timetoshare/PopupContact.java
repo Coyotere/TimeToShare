@@ -2,24 +2,32 @@ package com.example.timetoshare;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.PopupWindow;
 
-public class PopupContact extends AppCompatActivity {
+public class PopupContact extends PopupWindow {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_popup_contact);
+    Context context;
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
+    public PopupContact(Context ctx) {
+        super(ctx);
+        context = ctx;
 
-        int width = dm.widthPixels;
-        int heigth = dm.heightPixels;
+        setContentView(LayoutInflater.from(context).inflate(R.layout.activity_popup_contact, null));
+        setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+        setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+        View popupView = getContentView();
+        setFocusable(true);
 
-        getWindow().setLayout((int) (width*.8), (int) (heigth*.6));
+    }
 
-
+    public void show(View v) {
+        showAtLocation(v, Gravity.CENTER, 0, 0);
     }
 }
