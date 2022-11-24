@@ -9,8 +9,8 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="@color/black"
-        android:text="Name"/>
+        android:text="Name"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/mail"
@@ -22,14 +22,14 @@
 
     <Button
         android:id="@+id/dialogButtonOK"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Sauvegarder"
+        android:layout_below="@+id/mail"
+        android:layout_centerInParent="true"
         android:layout_marginTop="23dp"
         android:paddingRight="5dp"
-        android:layout_below="@+id/mail"
-        android:textSize="17sp"
-        android:layout_centerInParent="true"
-        style="@style/Widget.AppCompat.Button.Colored" />
+        android:text="Sauvegarder"
+        android:textSize="17sp" />
 
 </RelativeLayout>

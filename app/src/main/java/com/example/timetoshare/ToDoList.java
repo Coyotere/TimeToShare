@@ -35,7 +35,6 @@ public class ToDoList {
     sendMessage :
         - RecyclerView : Centrer dans la page ;
                             Chercher 3 photos aléatoires selon la période
-        - Zone du message ; même affichage que les autres pages
         - Implémenter l'ajout de photo
         - Implémenter l'envoie de mail
         - Implémenter la notification

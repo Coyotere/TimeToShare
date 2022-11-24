@@ -93,34 +93,32 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <ImageButton
+    <android.widget.ImageButton
         android:id="@+id/addSM"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginStart="-64dp"
         android:layout_marginEnd="32dp"
-        android:background="@null"
+        android:background="@drawable/round_active_add_sm"
         android:contentDescription="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSM"
-        app:srcCompat="@drawable/round_active_add_sm" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSM" />
 
-    <ImageButton
+    <android.widget.ImageButton
         android:id="@+id/sendSM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="-64dp"
-        android:background="@null"
+        android:background="@drawable/around_button_red_send_sm"
         android:contentDescription="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSM"
-        app:srcCompat="@drawable/around_button_red_send_sm" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSM"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
