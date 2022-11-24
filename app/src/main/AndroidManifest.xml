@@ -14,6 +14,9 @@
         android:theme="@style/Theme.TimeToShare"
         tools:targetApi="31">
         <activity
+            android:name=".popupGroupIcons"
+            android:exported="false" />
+        <activity
             android:name=".PopupContact"
             android:exported="false"
             android:theme="@style/AppTheme.CustomTheme">
