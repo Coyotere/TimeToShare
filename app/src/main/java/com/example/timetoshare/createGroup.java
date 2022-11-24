@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class createGroup extends AppCompatActivity {
     final Context context = this;
     int repetitionChoose;
     Spinner spinner;
-
+    PopupContact popupContact;
     private String[] textAlea;
 
     @Override
@@ -51,6 +52,7 @@ public class createGroup extends AppCompatActivity {
         setContentView(R.layout.activity_create_group);
 
         textAlea = getResources().getStringArray(R.array.textAlea);
+        popupContact = new PopupContact(getBaseContext());
 
         //Spinner
         repetitionChoose = 3;
@@ -90,7 +92,6 @@ public class createGroup extends AppCompatActivity {
         btnAnnuler.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                save();
                 finish();
             }
         });
@@ -133,11 +134,20 @@ public class createGroup extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupContact popupContact = new PopupContact(getBaseContext());
+
                 popupContact.show(view);
                 //startActivity(new Intent(createGroup.this, PopupContact.class));
                 //items.add(new ItemGroup("Nom", "sEmail"));
                 //adapter.notifyDataSetChanged();
+            }
+        });
+
+        popupContact.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if(popupContact.newContact){
+                    System.out.println("new contact");
+                }
             }
         });
 

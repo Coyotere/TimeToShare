@@ -21,7 +21,9 @@
         <activity
             android:name=".PopupContact"
             android:exported="false"
-            tools:ignore="Instantiatable">
+            tools:ignore="Instantiatable"
+            android:theme="@style/AppTheme.CustomTheme"
+            >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
