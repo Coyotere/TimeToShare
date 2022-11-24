@@ -23,7 +23,7 @@
     <string name="dateDepart">Date départ</string>
     <string name="dateRetour">Date retour</string>
     <string name="separateurDate">-</string>
-    <string name="repeterTout">Répéter tous les</string>
+    <string name="repeterTout">Notifications : </string>
 
     <string name="erreurNomGroupe">Nom de groupe nécessaire</string>
     <string name="erreurNoDate">Date de départ et retour nécessaire</string>
