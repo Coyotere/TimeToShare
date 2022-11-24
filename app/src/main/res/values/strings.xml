@@ -19,4 +19,14 @@
         <item>2 semaines</item>
     </string-array>
 
+    <string name="groupName">Nom du groupe</string>
+    <string name="dateDepart">Date départ</string>
+    <string name="dateRetour">Date retour</string>
+    <string name="separateurDate">-</string>
+    <string name="repeterTout">Répéter tous les</string>
+
+
+
+
+
 </resources>
