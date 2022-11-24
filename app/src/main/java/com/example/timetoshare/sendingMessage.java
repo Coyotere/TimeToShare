@@ -26,7 +26,10 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -121,7 +124,25 @@ public class sendingMessage extends AppCompatActivity {
     }
 
     public void requestSendSM() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
+        SharedPreferences.Editor edit_userData = db.edit();
+
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        String dateTime = dateFormat.format(date);
+        edit_userData.putString("lastRepetition", dateTime);
+
+        edit_userData.commit();
+
+
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"mail@mail.com"});
+        i.putExtra(Intent.EXTRA_SUBJECT, "TimeToShare news");
+        //i.putExtra(Intent.EXTRA_STREAM, "@drawable");
+        i.putExtra(Intent.EXTRA_TEXT, db.getString("message", "..."));
+        startActivity(Intent.createChooser(i, "SendMail"));
     }
 
     @Override
