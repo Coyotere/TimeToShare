@@ -6,7 +6,6 @@ public class ToDoList {
     All :
         - Passer en mode constraint
         - Incrémenter list de string pour les textes
-        - Incrémenter les images disponibles (6)
 
     MainActivity :
 
@@ -21,6 +20,7 @@ public class ToDoList {
                                         Affichage de seulement @Nom
         - Sécuriser la zone du message : taille max
         - Implémenter le boutton Random
+        - Sécuriser Nom vide ? Contacts Vide ?
 
 
     createGroup :
@@ -31,6 +31,7 @@ public class ToDoList {
         - RecyclerView des contacts : Boutton supprimer sur chaque item ;
                                         Quand click sur add, ouvre Popup avec Nom + Mail : Boutton valider / annuler
                                         Affichage de seulement @Nom
+        - Sécuriser Nom vide ? Contacts Vide ?
 
 
     sendMessage :
