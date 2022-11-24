@@ -1,29 +1,19 @@
 package com.example.timetoshare;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class sendingMessage extends AppCompatActivity {
 
@@ -64,7 +54,7 @@ public class sendingMessage extends AppCompatActivity {
         final TextView textSM = (TextView) findViewById(R.id.textSM);
         textSM.setText(getTextSM());
 
-        final Button addButton = (Button) findViewById(R.id.addSM);
+        final ImageButton addButton = (ImageButton) findViewById(R.id.addSM);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +62,7 @@ public class sendingMessage extends AppCompatActivity {
             }
         });
 
-        final Button sendButton = (Button) findViewById(R.id.sendSM);
+        final ImageButton sendButton = (ImageButton) findViewById(R.id.sendSM);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +70,7 @@ public class sendingMessage extends AppCompatActivity {
             }
         });
 
-        final ImageButton leaveButton = (ImageButton) findViewById(R.id.leaveSM);
+        final ImageButton leaveButton = (ImageButton) findViewById(R.id.leaveManager);
         leaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

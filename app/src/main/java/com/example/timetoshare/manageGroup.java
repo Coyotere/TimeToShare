@@ -23,9 +23,7 @@ import android.widget.TextView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -85,6 +83,14 @@ public class manageGroup extends AppCompatActivity {
 
         zoneMessage = findViewById(R.id.zoneMessage);
         zoneMessage.setText(getTextSM());
+
+        final ImageButton leave = (ImageButton) findViewById(R.id.leaveManager);
+        leave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         img = findViewById(R.id.imageGroupe);
         img.setImageResource(getImageSM());
