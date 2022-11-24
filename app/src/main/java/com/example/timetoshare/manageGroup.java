@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -152,9 +153,9 @@ public class manageGroup extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                save();
-                finish();
-
+                if(save()) {
+                    finish();
+                }
             }
         });
 
@@ -187,8 +188,12 @@ public class manageGroup extends AppCompatActivity {
 
     }
 
-    private void save() {
+    private boolean save() {
 
+
+        if(!canSave()){
+            return false;
+        }
 
         SharedPreferences userData = getSharedPreferences(initialTitle, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit_userData = userData.edit();
@@ -245,6 +250,41 @@ public class manageGroup extends AppCompatActivity {
         edit_userData.putString(titre.getText().toString(), titre.getText().toString());
         edit_userData.commit();
 
+        return true;
+    }
+
+    private boolean canSave(){
+        if(titre.getText().toString().equals("")){
+            Toast.makeText(manageGroup.this, getText(R.string.erreurNomGroupe), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(this.dateRetour.getText().toString().equals(getString(R.string.dateRetour)) || this.dateDepart.getText().toString().equals(getString(R.string.dateDepart))){
+            Toast.makeText(manageGroup.this, getText(R.string.erreurNoDate), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else{
+            String[] dateDepartArray = this.dateDepart.getText().toString().split(" ");
+            String[] dateRetourArray = this.dateRetour.getText().toString().split(" ");
+
+            dateDepartArray[1] = String.valueOf(getNumMonth(dateDepartArray[1]));
+            dateRetourArray[1] = String.valueOf(getNumMonth(dateRetourArray[1]));
+
+            Calendar calDepart = Calendar.getInstance();
+            calDepart.set(Integer.parseInt(dateDepartArray[2]), Integer.parseInt(dateDepartArray[1]), Integer.parseInt(dateDepartArray[0]));
+            Date dateDepart = calDepart.getTime();
+
+            Calendar calRetour = Calendar.getInstance();
+            calRetour.set(Integer.parseInt(dateRetourArray[2]), Integer.parseInt(dateRetourArray[1]), Integer.parseInt(dateRetourArray[0]));
+            Date dateRetour = calRetour.getTime();
+
+            if(dateRetour.before(dateDepart) || dateRetour.equals(dateDepart)){
+                Toast.makeText(manageGroup.this, getText(R.string.erreurDateDepartRetour), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+        }
+
+        return true;
     }
 
     private String getTextSM() {
