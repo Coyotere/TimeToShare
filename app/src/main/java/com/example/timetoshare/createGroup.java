@@ -92,8 +92,9 @@ public class createGroup extends AppCompatActivity {
         btnValider.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                save();
-                finish();
+                if(save()){
+                    finish();
+                }
             }
         });
 
@@ -124,7 +125,12 @@ public class createGroup extends AppCompatActivity {
 
     }
 
-    private void save() {
+    private boolean save() {
+
+        if(!canSave()){
+            return false;
+        }
+
 
         SharedPreferences userData = getSharedPreferences(titreGroupe.getText().toString(), Context.MODE_PRIVATE);
         SharedPreferences.Editor edit_userData = userData.edit();
@@ -167,6 +173,42 @@ public class createGroup extends AppCompatActivity {
         edit_userData = userData.edit();
         edit_userData.putString(titreGroupe.getText().toString(), titreGroupe.getText().toString());
         edit_userData.commit();
+
+        return true;
+    }
+
+    private boolean canSave(){
+        if(titreGroupe.getText().toString().equals("")){
+            Toast.makeText(createGroup.this, getText(R.string.erreurNomGroupe), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(this.dateRetour.getText().toString().equals(getString(R.string.dateRetour)) || this.dateDepart.getText().toString().equals(getString(R.string.dateDepart))){
+            Toast.makeText(createGroup.this, getText(R.string.erreurNoDate), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else{
+            String[] dateDepartArray = this.dateDepart.getText().toString().split(" ");
+            String[] dateRetourArray = this.dateRetour.getText().toString().split(" ");
+
+            dateDepartArray[1] = String.valueOf(getNumMonth(dateDepartArray[1]));
+            dateRetourArray[1] = String.valueOf(getNumMonth(dateRetourArray[1]));
+
+            Calendar calDepart = Calendar.getInstance();
+            calDepart.set(Integer.parseInt(dateDepartArray[2]), Integer.parseInt(dateDepartArray[1]), Integer.parseInt(dateDepartArray[0]));
+            Date dateDepart = calDepart.getTime();
+
+            Calendar calRetour = Calendar.getInstance();
+            calRetour.set(Integer.parseInt(dateRetourArray[2]), Integer.parseInt(dateRetourArray[1]), Integer.parseInt(dateRetourArray[0]));
+            Date dateRetour = calRetour.getTime();
+
+            if(dateRetour.before(dateDepart) || dateRetour.equals(dateDepart)){
+                Toast.makeText(createGroup.this, getText(R.string.erreurDateDepartRetour), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+        }
+
+        return true;
     }
 
     private void initDatePicker(TextView dateView) {

@@ -25,6 +25,11 @@
     <string name="separateurDate">-</string>
     <string name="repeterTout">Répéter tous les</string>
 
+    <string name="erreurNomGroupe">Nom de groupe nécessaire</string>
+    <string name="erreurNoDate">Date de départ et retour nécessaire</string>
+    <string name="erreurDateDepartRetour">Date de départ doit être avant la date de retour</string>
+
+
 
 
 
