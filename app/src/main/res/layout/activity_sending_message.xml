@@ -9,103 +9,118 @@
     android:foregroundGravity="center_horizontal"
     tools:context=".sendingMessage">
 
-    <LinearLayout
+    <ImageButton
+        android:id="@+id/leaveManager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        app:tint="@color/red_TTS"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/iconeSM"
+        android:layout_width="157dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/chicken" />
+
+    <TextView
+        android:id="@+id/titleSM"
+        style="@style/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/red_TTS"
+        android:textColorHint="@color/red_TTS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconeSM" />
+
+    <TextView
+        android:id="@+id/nMembersSM"
+        style="@style/texteTTS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleSM" />
+
+    <EditText
+        android:id="@+id/textSM"
+        style="@style/texteTTS"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="visible"
+        android:layout_height="246dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:inputType="textMultiLine|textPersonName"
+        android:maxLines="50"
+        android:singleLine="false"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nMembersSM" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSM"
+        android:layout_width="wrap_content"
+        android:layout_height="139dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:foregroundGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSM">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageButton
+        android:id="@+id/addSM"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="-64dp"
+        android:layout_marginEnd="32dp"
+        android:background="@null"
+        android:contentDescription="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSM"
+        app:srcCompat="@drawable/round_active_add_sm" />
 
-        <ImageButton
-            android:id="@+id/leaveManager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|left"
-            android:backgroundTint="#00FFFFFF"
-            android:scaleX="1.5"
-            android:scaleY="1.5"
-            app:srcCompat="?attr/actionModeCloseDrawable"
-            app:tint="@color/red_TTS"
-            tools:ignore="SpeakableTextPresentCheck" />
+    <ImageButton
+        android:id="@+id/sendSM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="-64dp"
+        android:background="@null"
+        android:contentDescription="@string/add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSM"
+        app:srcCompat="@drawable/around_button_red_send_sm" />
 
-        <ImageView
-            android:id="@+id/iconeSM"
-            android:layout_width="157dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/chicken" />
-
-        <TextView
-            android:id="@+id/titleSM"
-            style="@style/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@color/red_TTS"
-            android:textColorHint="@color/red_TTS" />
-
-        <TextView
-            android:id="@+id/nMembersSM"
-            style="@style/texteTTS"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="TextView" />
-
-        <EditText
-            android:id="@+id/textSM"
-            style="@style/texteTTS"
-            android:layout_width="match_parent"
-            android:layout_height="246dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@null"
-            android:ems="10"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:inputType="textMultiLine|textPersonName"
-            android:maxLines="50"
-            android:singleLine="false"
-            android:text="Name" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewSM"
-            android:layout_width="match_parent"
-            android:layout_height="139dp">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/addSM"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:background="@null"
-                android:contentDescription="@string/add"
-                app:srcCompat="@drawable/round_active_add_sm" />
-
-            <ImageButton
-                android:id="@+id/sendSM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:contentDescription="@string/add"
-                app:srcCompat="@drawable/around_button_red_send_sm" />
-        </LinearLayout>
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

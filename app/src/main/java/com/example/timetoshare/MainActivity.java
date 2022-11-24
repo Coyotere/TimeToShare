@@ -75,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
         edit_userData.putString("test", "test");
         edit_userData.commit();
 
+        // edit_userData.clear();
+        // edit_userData.commit();
+
 
         recyclerView = findViewById(R.id.recycleViewMain);
         adapter = new MainAdapter(MainActivity.this, items);
