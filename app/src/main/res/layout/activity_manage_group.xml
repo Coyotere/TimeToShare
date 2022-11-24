@@ -130,7 +130,7 @@
             android:shadowDx="1.2"
             android:shadowDy="1.2"
             android:shadowRadius="1.2"
-            android:text="Répéter tous les "
+            android:text="@string/repeterTout"
             android:textAlignment="center"
             android:textColor="@color/red_TTS"
             android:textSize="20sp" />
