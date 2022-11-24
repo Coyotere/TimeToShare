@@ -19,7 +19,7 @@
         <item>1 semaine</item>
         <item>2 semaines</item>
     </string-array>
-    
+
     <string-array name="textAlea">
         <item>premier texte</item>
         <item>deuxieme texte</item>
@@ -38,10 +38,6 @@
     <string name="erreurNomGroupe">Nom de groupe nécessaire</string>
     <string name="erreurNoDate">Date de départ et retour nécessaire</string>
     <string name="erreurDateDepartRetour">Date de départ doit être avant la date de retour</string>
-
-
-
-
 
 
 </resources>

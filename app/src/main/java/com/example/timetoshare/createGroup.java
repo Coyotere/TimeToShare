@@ -9,6 +9,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -132,8 +133,9 @@ public class createGroup extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                items.add(new ItemGroup("Nom", "Email"));
-                adapter.notifyDataSetChanged();
+                startActivity(new Intent(createGroup.this, PopupContact.class));
+                //items.add(new ItemGroup("Nom", "Email"));
+                //adapter.notifyDataSetChanged();
             }
         });
 
