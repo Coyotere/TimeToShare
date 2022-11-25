@@ -22,8 +22,8 @@ public class PopupImage extends PopupWindow {
         view = v;
         setContentView(LayoutInflater.from(context).inflate(R.layout.activity_popup_group_icons, null));
 
-        setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+        //setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+        //setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
         View popupView = getContentView();
         setFocusable(true);
 
