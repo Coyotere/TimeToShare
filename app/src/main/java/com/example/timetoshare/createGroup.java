@@ -45,6 +45,7 @@ public class createGroup extends AppCompatActivity {
 
     List<Contact> items = new ArrayList<Contact>();
     PopupImage popupImage;
+    int idImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class createGroup extends AppCompatActivity {
 
         textAlea = getResources().getStringArray(R.array.textAlea);
         image = findViewById(R.id.groupImage);
-
+        idImage = R.drawable.tiger;
 
         RecyclerView recyclerView = findViewById(R.id.recycleViewCreate);
         popupContact = new PopupContact(getBaseContext(), recyclerView);
@@ -93,6 +94,17 @@ public class createGroup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 popupImage.show(view);
+            }
+        });
+
+        popupImage.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if(popupImage.idImage != -1){
+                    image.setImageResource(popupImage.idImage);
+                    idImage = popupImage.idImage;
+                    //image.setBackground(getResources().getDrawable(popupImage.idImage));
+                }
             }
         });
 
@@ -219,7 +231,7 @@ public class createGroup extends AppCompatActivity {
 
         edit_userData.putInt("repetition", repetitionChoose);
 
-        edit_userData.putInt("image", R.drawable.chicken);
+        edit_userData.putInt("image", idImage);
 
         edit_userData.putString("message", zoneMessage.getText().toString());
 
