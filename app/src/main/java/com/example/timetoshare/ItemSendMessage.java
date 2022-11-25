@@ -1,21 +1,22 @@
 package com.example.timetoshare;
 
+import android.net.Uri;
 import android.widget.Button;
 
 public class ItemSendMessage {
 
-    int image;
+    Uri image;
     Button button;
 
-    public ItemSendMessage(int image) {
+    public ItemSendMessage(Uri image) {
         this.image = image;
     }
 
-    public int getImage() {
+    public Uri getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(Uri image) {
         this.image = image;
     }
 

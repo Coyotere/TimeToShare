@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,6 +43,8 @@ public class sendingMessage extends AppCompatActivity {
     private static final int RC_IMAGE_PERMS = 100;
     private static final int RC_CHOOSE_PHOTO = 200;
     private Uri uriImageSelected;
+    List<ItemSendMessage> pictures = new ArrayList<ItemSendMessage>();
+    sendMessageAdapter adapterSM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +53,12 @@ public class sendingMessage extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewSM);
 
-        List<ItemSendMessage> pictures = new ArrayList<ItemSendMessage>();
-        pictures.add(new ItemSendMessage(R.drawable.dog));
-        pictures.add(new ItemSendMessage(R.drawable.dragon));
-        pictures.add(new ItemSendMessage(R.drawable.chicken));
-        pictures.add(new ItemSendMessage(R.drawable.dog));
-        pictures.add(new ItemSendMessage(R.drawable.dragon));
-        pictures.add(new ItemSendMessage(R.drawable.chicken));
-        pictures.add(new ItemSendMessage(R.drawable.dog));
-        pictures.add(new ItemSendMessage(R.drawable.dragon));
-        pictures.add(new ItemSendMessage(R.drawable.chicken));
+        adapterSM = new sendMessageAdapter(getApplicationContext(), pictures, this);
+
+        // pictures.add(new ItemSendMessage(R.drawable.dog));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new sendMessageAdapter(getApplicationContext(), pictures));
+        recyclerView.setAdapter(adapterSM);
 
         db = getSharedPreferences(getIntent().getExtras().getString("groupName"), Context.MODE_PRIVATE);
 
@@ -171,14 +167,16 @@ public class sendingMessage extends AppCompatActivity {
 
     // Handle activity response (after user has chosen or not a picture)
     private void handleResponse(int requestCode, int resultCode, Intent data){
-        ImageView imageView = (ImageView) findViewById(R.id.iconeSM);
+        //ImageView imageView = (ImageView) findViewById(R.id.iconeSM);
         if (requestCode == RC_CHOOSE_PHOTO) {
             if (resultCode == RESULT_OK) { //SUCCESS
                 this.uriImageSelected = data.getData();
-                Glide.with(this) //SHOWING PREVIEW OF IMAGE
-                        .load(this.uriImageSelected)
-                        .apply(RequestOptions.circleCropTransform())
-                        .into(imageView);
+                pictures.add(new ItemSendMessage(this.uriImageSelected));
+                adapterSM.notifyDataSetChanged();
+                //Glide.with(this) //SHOWING PREVIEW OF IMAGE
+                //        .load(this.uriImageSelected)
+                //        .apply(RequestOptions.circleCropTransform())
+                //        .into(imageView);
             } else {
                 Toast.makeText(this, getString(R.string.toast_title_no_image_chosen), Toast.LENGTH_SHORT).show();
             }
