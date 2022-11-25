@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class createGroup extends AppCompatActivity {
@@ -46,8 +41,10 @@ public class createGroup extends AppCompatActivity {
     Spinner spinner;
     PopupContact popupContact;
     private String[] textAlea;
+    ImageButton image;
 
     List<Contact> items = new ArrayList<Contact>();
+    PopupImage popupImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +52,12 @@ public class createGroup extends AppCompatActivity {
         setContentView(R.layout.activity_create_group);
 
         textAlea = getResources().getStringArray(R.array.textAlea);
+        image = findViewById(R.id.groupImage);
+
+
+        RecyclerView recyclerView = findViewById(R.id.recycleViewCreate);
+        popupContact = new PopupContact(getBaseContext(), recyclerView);
+        popupImage = new PopupImage(getBaseContext(),recyclerView);
 
         //Spinner
         repetitionChoose = 3;
@@ -86,6 +89,12 @@ public class createGroup extends AppCompatActivity {
             }
         });
 
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupImage.show(view);
+            }
+        });
 
         titreGroupe = findViewById(R.id.titreGroupe);
         zoneMessage = findViewById(R.id.zoneMessage);
@@ -122,8 +131,6 @@ public class createGroup extends AppCompatActivity {
         initDatePicker(dateDepart);
         initDatePicker(dateRetour);
 
-        RecyclerView recyclerView = findViewById(R.id.recycleViewCreate);
-        popupContact = new PopupContact(getBaseContext(), recyclerView);
         //name = findViewById(R.id.name);
 
         adapter = new GroupAdapter(createGroup.this, items,popupContact);

@@ -31,10 +31,19 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     @Override
     public void onBindViewHolder(@NonNull GroupHolder holder, int position) {
         holder.name.setText(items.get(position).getName());
+        holder.mail.setText(items.get(position).getMail());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 popupContact.show(holder.itemView, items.get(holder.getAbsoluteAdapterPosition()).getName(),items.get(holder.getAbsoluteAdapterPosition()).getMail(),holder.getAbsoluteAdapterPosition());
+            }
+        });
+
+        holder.btnSupp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                items.remove(holder.getAbsoluteAdapterPosition());
+                notifyItemRemoved(holder.getAbsoluteAdapterPosition());
             }
         });
     }

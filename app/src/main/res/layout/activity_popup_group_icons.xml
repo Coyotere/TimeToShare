@@ -2,22 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:backgroundTint="@color/background_color"
+    android:background="@color/background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
+    <android.widget.ImageButton
         android:id="@+id/chicken"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
-        android:background="@null"
         android:backgroundTint="@null"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/chicken" />
+        android:background="@drawable/chicken" />
 
     <Space
         android:id="@+id/space"
@@ -28,69 +27,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <android.widget.ImageButton
         android:id="@+id/girafe"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
-        android:background="@null"
         android:backgroundTint="@null"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/space"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/girafe" />
+        android:background="@drawable/girafe" />
 
-    <ImageButton
+    <android.widget.ImageButton
         android:id="@+id/lion"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="32dp"
-        android:background="@null"
         android:backgroundTint="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/space"
-        app:srcCompat="@drawable/lion" />
+        android:background="@drawable/lion" />
 
-    <ImageButton
+    <android.widget.ImageButton
         android:id="@+id/dog"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:background="@null"
         android:backgroundTint="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/tiger"
         app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chicken"
-        app:srcCompat="@drawable/dog" />
+        android:background="@drawable/dog" />
 
-    <ImageButton
+    <android.widget.ImageButton
         android:id="@+id/dragon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:background="@drawable/roundcorner"
         android:backgroundTint="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/lion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/space"
         app:layout_constraintTop_toBottomOf="@+id/girafe"
-        app:srcCompat="@drawable/dragon" />
+        android:background="@drawable/dragon" />
 
-    <ImageButton
+    <android.widget.ImageButton
         android:id="@+id/tiger"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="32dp"
-        android:background="@null"
         android:backgroundTint="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/tiger" />
+        android:background="@drawable/tiger" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

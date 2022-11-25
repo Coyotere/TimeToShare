@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         SharedPreferences.Editor edit_userData = groupsName.edit();
-        // edit_userData.clear();
-        // edit_userData.commit();
+         edit_userData.clear();
+         edit_userData.commit();
 
 
         recyclerView = findViewById(R.id.recycleViewMain);
