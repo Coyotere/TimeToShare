@@ -124,6 +124,8 @@ public class sendingMessage extends AppCompatActivity {
     }
 
     public void requestSendSM() {
+        final TextView textSM = (TextView) findViewById(R.id.textSM);
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
         SharedPreferences.Editor edit_userData = db.edit();
@@ -141,7 +143,7 @@ public class sendingMessage extends AppCompatActivity {
         i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"mail@mail.com"});
         i.putExtra(Intent.EXTRA_SUBJECT, "TimeToShare news");
         //i.putExtra(Intent.EXTRA_STREAM, "@drawable");
-        i.putExtra(Intent.EXTRA_TEXT, db.getString("message", "..."));
+        i.putExtra(Intent.EXTRA_TEXT, textSM.getText());
         startActivity(Intent.createChooser(i, "SendMail"));
     }
 
