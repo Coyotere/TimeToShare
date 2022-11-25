@@ -253,7 +253,6 @@ public class manageGroup extends AppCompatActivity {
         Date date = cal.getTime();
         String dateTime = dateFormat.format(date);
         edit_userData.putString("startingDate", dateTime);
-        edit_userData.putString("lastRepetition", dateTime);
 
 
 
