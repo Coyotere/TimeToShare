@@ -10,20 +10,8 @@ public class ToDoList {
 
 
     manageGroup :
-        - delete group
-        - Image cliquable pour changement avec popup
-        - Sécuriser les dates (avant < après)
-        - RecyclerView des contacts : Boutton supprimer sur chaque item ;
-                                        Affichage de seulement @Nom et @mail
-                                        Si vide : indication
-        - Sécuriser la zone du message : taille max
 
     createGroup :
-        - Image cliquable pour changement avec popup
-        - Sécuriser la zone du message : taille max
-        - RecyclerView des contacts : Boutton supprimer sur chaque item ;
-                                        Affichage de seulement @Nom et @mail
-                                           Si vide : indication
 
     sendMessage :
         - RecyclerView : Chercher 3 photos aléatoires selon la période

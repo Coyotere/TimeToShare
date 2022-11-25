@@ -50,6 +50,9 @@ public class PopupContact extends PopupWindow {
                 else if(numIteration(getMail()) != 1){
                     Toast.makeText(context, "Veuillez rentré une adresse valide", Toast.LENGTH_SHORT).show();
                 }
+                else if(getMail().indexOf(",") > 0 || getMail().indexOf(";") > 0 || getName().indexOf(",") > 0 || getName().indexOf(";") > 0){
+                    Toast.makeText(context, "Impossible d'ajouter les symboles \' ; \' et \' , \'", Toast.LENGTH_SHORT).show();
+                }
                 else{
                     if(!modifiContact) {
                         newContact = true;

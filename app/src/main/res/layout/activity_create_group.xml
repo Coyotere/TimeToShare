@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/tiger" />
 
-    <EditText
+    <android.widget.EditText
         android:id="@+id/titreGroupe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,6 +32,8 @@
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/red_TTS"
         android:hint="@string/groupName"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         android:shadowColor="@color/red_TTS"
         android:shadowDx="1.2"
         android:shadowDy="1.2"
