@@ -41,11 +41,12 @@ public class createGroup extends AppCompatActivity {
     Spinner spinner;
     PopupContact popupContact;
     private String[] textAlea;
-    ImageButton image;
+
 
     List<Contact> items = new ArrayList<Contact>();
     PopupImage popupImage;
     int idImage;
+    ImageButton image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -28,6 +28,12 @@
             android:theme="@style/AppTheme.CustomTheme"
             >
         </activity>
+        <activity android:name=".PopupConfirm"
+            android:exported="false"
+            android:theme="@style/AppTheme.CustomTheme"
+            tools:ignore="Instantiatable">
+        </activity>
+
         <activity
             android:name=".manageGroup"
             android:exported="false" />
