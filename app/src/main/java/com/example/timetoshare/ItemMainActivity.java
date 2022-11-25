@@ -91,7 +91,7 @@ public class ItemMainActivity {
 
         System.out.println("nbDay = " + nbDay);
 
-        this.needMessage = nbDay >= repetition ;
+        this.needMessage = nbDay >= repetition && currentTime.before(finalDate);
 
 
     }

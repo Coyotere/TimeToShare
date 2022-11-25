@@ -40,14 +40,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainHolder> {
 
        switch(items.get(position).active){
            case BEFORE:
-               holder.activeView.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+               holder.activeView.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
                break;
            case PROGRESS:
                holder.activeView.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                break;
            case AFTER:
-               holder.activeView.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+               holder.activeView.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
        }
+
         holder.bellView.setImageResource(R.drawable.bell);
         holder.bellView.setVisibility(items.get(position).needMessage ? View.VISIBLE:View.INVISIBLE);
 

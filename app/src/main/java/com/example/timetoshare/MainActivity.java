@@ -1,5 +1,9 @@
 package com.example.timetoshare;
 
+import static com.example.timetoshare.Active.AFTER;
+import static com.example.timetoshare.Active.BEFORE;
+import static com.example.timetoshare.Active.PROGRESS;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -69,10 +73,41 @@ public class MainActivity extends AppCompatActivity {
     private void manageRecycleView(){
         groupsName = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
         items.clear();
+        List<ItemMainActivity> tmps = new ArrayList<ItemMainActivity>();
         for(Map.Entry<String, ?> group : groupsName.getAll().entrySet()) {
             System.out.println(group.getKey());
-            items.add(new ItemMainActivity(group.getKey(), this));
+            tmps.add(new ItemMainActivity(group.getKey(), this));
         }
+
+        //Mettre les cloche en premier
+        for(ItemMainActivity item : tmps){
+            if(item.needMessage){
+                items.add(item);
+            }
+        }
+
+        //Mettre les actif sans cloche en deuxieme
+        for(ItemMainActivity item : tmps){
+            if(item.active == PROGRESS && !item.needMessage){
+                items.add(item);
+            }
+        }
+
+        //Mettre les groupe pas encore passé en troisième
+        for(ItemMainActivity item : tmps){
+            if(item.active == BEFORE){
+                items.add(item);
+            }
+        }
+
+        //Mettre les groupes déjà passé en dernier
+        for(ItemMainActivity item : tmps){
+            if(item.active == AFTER){
+                items.add(item);
+            }
+        }
+
+
         System.out.println("taille" + items.size());
         withoutGroup.setVisibility(items.size() > 0 ? View.INVISIBLE: View.VISIBLE);
 
