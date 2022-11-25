@@ -159,6 +159,16 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/AjoutContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter des contacts"
+        app:layout_constraintBottom_toBottomOf="@+id/recycleViewCreate"
+        app:layout_constraintEnd_toEndOf="@+id/recycleViewCreate"
+        app:layout_constraintStart_toStartOf="@+id/recycleViewCreate"
+        app:layout_constraintTop_toTopOf="@+id/recycleViewCreate" />
+
     <ImageButton
         android:id="@+id/btnAddUsersCreate"
         android:layout_width="75dp"

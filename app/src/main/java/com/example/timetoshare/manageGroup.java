@@ -57,6 +57,7 @@ public class manageGroup extends AppCompatActivity {
 
     ImageButton deleteGroupe;
     PopupConfirm popupConfirm;
+    TextView ajoutContact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,8 @@ public class manageGroup extends AppCompatActivity {
         image.setImageResource(idImage);
         spinner = findViewById(R.id.spinner);
         deleteGroupe = findViewById(R.id.deleteGroup);
+        ajoutContact = findViewById(R.id.AjoutContact);
+        ajoutContact.setVisibility(View.INVISIBLE);
 
         int[] repet = {1,3,5,7,14};
         String[] repetString = {"1 jour","3 jours", "5 jours", "1 semaine", "2 semaines"};
@@ -158,7 +161,7 @@ public class manageGroup extends AppCompatActivity {
         //items.add(new ItemGroup("Lucie Ditée", "lucide@gmail.com"));
         //items.add(new ItemGroup("Alain Térieur", "dedans@orange.fr"));
 
-        adapter = new GroupAdapter(manageGroup.this, items,popupContact);
+        adapter = new GroupAdapter(manageGroup.this, items,popupContact,ajoutContact);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -219,6 +222,7 @@ public class manageGroup extends AppCompatActivity {
                     items.get(popupContact.numItem).setMail(popupContact.getMail());
                     adapter.notifyDataSetChanged();
                 }
+                ajoutContact.setVisibility(items.size() > 0 ? View.INVISIBLE: View.VISIBLE);
             }
         });
 
