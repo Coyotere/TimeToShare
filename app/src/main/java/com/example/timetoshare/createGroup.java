@@ -47,6 +47,7 @@ public class createGroup extends AppCompatActivity {
     PopupContact popupContact;
     private String[] textAlea;
 
+    List<Contact> items = new ArrayList<Contact>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,6 @@ public class createGroup extends AppCompatActivity {
         setContentView(R.layout.activity_create_group);
 
         textAlea = getResources().getStringArray(R.array.textAlea);
-        popupContact = new PopupContact(getBaseContext());
 
         //Spinner
         repetitionChoose = 3;
@@ -123,12 +123,10 @@ public class createGroup extends AppCompatActivity {
         initDatePicker(dateRetour);
 
         RecyclerView recyclerView = findViewById(R.id.recycleViewCreate);
-
-        List<ItemGroup> items = new ArrayList<ItemGroup>();
-
+        popupContact = new PopupContact(getBaseContext(), recyclerView);
         //name = findViewById(R.id.name);
 
-        adapter = new GroupAdapter(createGroup.this, items);
+        adapter = new GroupAdapter(createGroup.this, items,popupContact);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -148,7 +146,13 @@ public class createGroup extends AppCompatActivity {
             @Override
             public void onDismiss() {
                 if(popupContact.newContact){
-                    System.out.println("new contact");
+                    items.add(new Contact(popupContact.getName(), popupContact.getMail()));
+                    adapter.notifyDataSetChanged();
+                }
+                else if(popupContact.contactModified){
+                    items.get(popupContact.numItem).setName(popupContact.getName());
+                    items.get(popupContact.numItem).setMail(popupContact.getMail());
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -170,7 +174,18 @@ public class createGroup extends AppCompatActivity {
         SharedPreferences userData = getSharedPreferences(titreGroupe.getText().toString(), Context.MODE_PRIVATE);
         SharedPreferences.Editor edit_userData = userData.edit();
 
-        edit_userData.putInt("numberMembers", 2);
+        edit_userData.putInt("numberMembers", items.size());
+        String members = "";
+
+        for(Contact contact: items){
+            if(!members.equals("")){
+                members = members + ";";
+            }
+            members = members + contact.toString();
+        }
+
+        edit_userData.putString("members", members);
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
         String[] dateText = dateDepart.getText().toString().split(" ");
@@ -219,6 +234,10 @@ public class createGroup extends AppCompatActivity {
         }
         else if(this.dateRetour.getText().toString().equals(getString(R.string.dateRetour)) || this.dateDepart.getText().toString().equals(getString(R.string.dateDepart))){
             Toast.makeText(createGroup.this, getText(R.string.erreurNoDate), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(items.size() == 0){
+            Toast.makeText(createGroup.this, getText(R.string.erreurContact), Toast.LENGTH_SHORT).show();
             return false;
         }
         else{

@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,9 +44,9 @@ public class manageGroup extends AppCompatActivity {
     int repetitionChoose;
     String initialTitle;
     Button valider;
-
+    PopupContact popupContact;
     private String[] textAlea;
-
+    List<Contact> items = new ArrayList<Contact>();
     Spinner spinner;
 
     @Override
@@ -131,13 +132,20 @@ public class manageGroup extends AppCompatActivity {
         }
 
         RecyclerView recyclerView = findViewById(R.id.recycleView);
+        popupContact = new PopupContact(getBaseContext(), recyclerView);
 
-        List<ItemGroup> items = new ArrayList<ItemGroup>();
+        String allMember = db.getString("members", null);
+        String[] members = allMember.split(";");
 
-        items.add(new ItemGroup("Lucie Ditée", "lucide@gmail.com"));
-        items.add(new ItemGroup("Alain Térieur", "dedans@orange.fr"));
+        for(String member:members){
+            String[] value = member.split(",");
+            items.add(new Contact(value[0],value[1]));
+        }
 
-        adapter = new GroupAdapter(manageGroup.this, items);
+       //items.add(new ItemGroup("Lucie Ditée", "lucide@gmail.com"));
+       //items.add(new ItemGroup("Alain Térieur", "dedans@orange.fr"));
+
+        adapter = new GroupAdapter(manageGroup.this, items,popupContact);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -145,8 +153,8 @@ public class manageGroup extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adapter.notifyDataSetChanged();
-                items.add(new ItemGroup("Nom", "Mail"));
+                popupContact.show(view);
+                //items.add(new ItemGroup("Nom", "Mail"));
             }
         });
 
@@ -168,15 +176,20 @@ public class manageGroup extends AppCompatActivity {
             }
         });
 
-
-        //supUser = (ImageButton) findViewById(R.id.btnSupp);
-        //supUser.setOnClickListener(new View.OnClickListener() {
-         //   @Override
-          //  public void onClick(View view) {
-            //    adapter.notifyDataSetChanged();
-             //   items.remove(items.size()-1);
-           // }
-        //});
+        popupContact.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if(popupContact.newContact){
+                    items.add(new Contact(popupContact.getName(), popupContact.getMail()));
+                    adapter.notifyDataSetChanged();
+                }
+                else if(popupContact.contactModified){
+                    items.get(popupContact.numItem).setName(popupContact.getName());
+                    items.get(popupContact.numItem).setMail(popupContact.getMail());
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
 
         dateDepart = findViewById(R.id.dateDepartManage);
 
@@ -194,6 +207,7 @@ public class manageGroup extends AppCompatActivity {
         initDatePicker(dateDepart);
 
         initDatePicker(dateRetour);
+
 
     }
 
@@ -217,7 +231,17 @@ public class manageGroup extends AppCompatActivity {
         edit_userData = userData.edit();
 
 
-        edit_userData.putInt("numberMembers", 2);
+        edit_userData.putInt("numberMembers", items.size());
+        String members = "";
+
+        for(Contact contact: items){
+            if(!members.equals("")){
+                members = members + ";";
+            }
+            members = members + contact.toString();
+        }
+
+        edit_userData.putString("members", members);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
         String[] dateText = dateDepart.getText().toString().split(" ");
@@ -252,10 +276,6 @@ public class manageGroup extends AppCompatActivity {
 
         edit_userData.commit();
 
-
-
-
-
         userData = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
         edit_userData = userData.edit();
 
@@ -274,6 +294,10 @@ public class manageGroup extends AppCompatActivity {
         }
         else if(this.dateRetour.getText().toString().equals(getString(R.string.dateRetour)) || this.dateDepart.getText().toString().equals(getString(R.string.dateDepart))){
             Toast.makeText(manageGroup.this, getText(R.string.erreurNoDate), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(items.size() == 0){
+            Toast.makeText(manageGroup.this, getText(R.string.erreurContact), Toast.LENGTH_SHORT).show();
             return false;
         }
         else{
