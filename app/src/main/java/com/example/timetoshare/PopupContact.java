@@ -44,7 +44,7 @@ public class PopupContact extends PopupWindow {
             @Override
             public void onClick(View view) {
                 if(getMail().equals("") && getName().equals("")){
-                    Toast.makeText(context, "Tout les champs doivent être complété", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Tout les champs doivent être complétés", Toast.LENGTH_SHORT).show();
 
                 }
                 else if(numIteration(getMail()) != 1){

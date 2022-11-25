@@ -122,6 +122,17 @@ public class sendingMessage extends AppCompatActivity {
     public void requestSendSM() {
         final TextView textSM = (TextView) findViewById(R.id.textSM);
 
+        String allMember = db.getString("members", null);
+        String[] members = allMember.split(";");
+        String[] mails = new String[members.length];
+
+        for(int ite = 0; ite < members.length; ite++){
+            String[] value = members[ite].split(",");
+            mails[ite] = value[1];
+        }
+
+        System.out.println(mails);
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
         SharedPreferences.Editor edit_userData = db.edit();
@@ -133,14 +144,26 @@ public class sendingMessage extends AppCompatActivity {
 
         edit_userData.commit();
 
-
         Intent i = new Intent(Intent.ACTION_SEND);
+        i.setAction(Intent.ACTION_SEND_MULTIPLE);
+
         i.setType("message/rfc822");
-        i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"mail@mail.com"});
+
+        ArrayList<Uri> uriList = new ArrayList<Uri>();
+
+        for(int x = 0; x < adapterSM.items.size(); x++) {
+            uriList.add(adapterSM.items.get(x).getImage());
+        }
+
+
+        i.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uriList);
+
+        i.putExtra(android.content.Intent.EXTRA_EMAIL, mails); // new String[]{"mail@mail.com"}
         i.putExtra(Intent.EXTRA_SUBJECT, "TimeToShare news");
-        //i.putExtra(Intent.EXTRA_STREAM, "@drawable");
         i.putExtra(Intent.EXTRA_TEXT, textSM.getText());
         startActivity(Intent.createChooser(i, "SendMail"));
+
+        finish();
     }
 
     @Override
@@ -167,7 +190,6 @@ public class sendingMessage extends AppCompatActivity {
 
     // Handle activity response (after user has chosen or not a picture)
     private void handleResponse(int requestCode, int resultCode, Intent data){
-        //ImageView imageView = (ImageView) findViewById(R.id.iconeSM);
         if (requestCode == RC_CHOOSE_PHOTO) {
             if (resultCode == RESULT_OK) { //SUCCESS
                 this.uriImageSelected = data.getData();
