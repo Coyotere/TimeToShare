@@ -9,6 +9,7 @@ public class ToDoList {
     MainActivity :
 
 
+
     manageGroup :
         - delete group
         - Image cliquable pour changement avec popup
@@ -19,7 +20,6 @@ public class ToDoList {
         - Sécuriser la zone du message : taille max
 
     createGroup :
-        - Image cliquable pour changement avec popup
         - Sécuriser la zone du message : taille max
         - RecyclerView des contacts : Boutton supprimer sur chaque item ;
                                         Affichage de seulement @Nom et @mail
