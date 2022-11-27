@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/tiger" />
 
-    <EditText
+    <android.widget.EditText
         android:id="@+id/titreGroupe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,6 +32,8 @@
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/red_TTS"
         android:hint="@string/groupName"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         android:shadowColor="@color/red_TTS"
         android:shadowDx="1.2"
         android:shadowDy="1.2"
@@ -158,6 +160,16 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/AjoutContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter des contacts"
+        app:layout_constraintBottom_toBottomOf="@+id/recycleViewCreate"
+        app:layout_constraintEnd_toEndOf="@+id/recycleViewCreate"
+        app:layout_constraintStart_toStartOf="@+id/recycleViewCreate"
+        app:layout_constraintTop_toTopOf="@+id/recycleViewCreate" />
 
     <ImageButton
         android:id="@+id/btnAddUsersCreate"

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,10 +17,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     Context context;
     List<Contact> items;
     PopupContact popupContact;
-    public GroupAdapter(Context context, List<Contact> items, PopupContact popupContact) {
+    TextView ajoutContact;
+
+    public GroupAdapter(Context context, List<Contact> items, PopupContact popupContact, TextView ajoutContact) {
         this.context = context;
         this.items = items;
         this.popupContact = popupContact;
+        this.ajoutContact = ajoutContact;
     }
 
     @NonNull
@@ -44,6 +48,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
             public void onClick(View view) {
                 items.remove(holder.getAbsoluteAdapterPosition());
                 notifyItemRemoved(holder.getAbsoluteAdapterPosition());
+                ajoutContact.setVisibility(items.size() > 0 ? View.INVISIBLE: View.VISIBLE);
             }
         });
     }

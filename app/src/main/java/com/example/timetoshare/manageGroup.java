@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +50,14 @@ public class manageGroup extends AppCompatActivity {
     List<Contact> items = new ArrayList<Contact>();
     Spinner spinner;
 
+
+    PopupImage popupImage;
+    int idImage;
+    ImageButton image;
+
+    ImageButton deleteGroupe;
+    PopupConfirm popupConfirm;
+    TextView ajoutContact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +66,13 @@ public class manageGroup extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
         textAlea = getResources().getStringArray(R.array.textAlea);
-
+        image = (ImageButton) findViewById(R.id.imageGroupe);
+        idImage = db.getInt("image", 0);
+        image.setImageResource(idImage);
         spinner = findViewById(R.id.spinner);
+        deleteGroupe = findViewById(R.id.deleteGroup);
+        ajoutContact = findViewById(R.id.AjoutContact);
+        ajoutContact.setVisibility(View.INVISIBLE);
 
         int[] repet = {1,3,5,7,14};
         String[] repetString = {"1 jour","3 jours", "5 jours", "1 semaine", "2 semaines"};
@@ -133,6 +147,8 @@ public class manageGroup extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycleView);
         popupContact = new PopupContact(getBaseContext(), recyclerView);
+        popupImage = new PopupImage(getBaseContext(),recyclerView);
+        popupConfirm = new PopupConfirm(getBaseContext(), recyclerView);
 
         String allMember = db.getString("members", null);
         String[] members = allMember.split(";");
@@ -142,10 +158,10 @@ public class manageGroup extends AppCompatActivity {
             items.add(new Contact(value[0],value[1]));
         }
 
-       //items.add(new ItemGroup("Lucie Ditée", "lucide@gmail.com"));
-       //items.add(new ItemGroup("Alain Térieur", "dedans@orange.fr"));
+        //items.add(new ItemGroup("Lucie Ditée", "lucide@gmail.com"));
+        //items.add(new ItemGroup("Alain Térieur", "dedans@orange.fr"));
 
-        adapter = new GroupAdapter(manageGroup.this, items,popupContact);
+        adapter = new GroupAdapter(manageGroup.this, items,popupContact,ajoutContact);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -155,6 +171,24 @@ public class manageGroup extends AppCompatActivity {
             public void onClick(View view) {
                 popupContact.show(view);
                 //items.add(new ItemGroup("Nom", "Mail"));
+            }
+        });
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupImage.show(view);
+            }
+        });
+
+        popupImage.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if(popupImage.idImage != -1){
+                    image.setImageResource(popupImage.idImage);
+                    idImage = popupImage.idImage;
+                    //image.setBackground(getResources().getDrawable(popupImage.idImage));
+                }
             }
         });
 
@@ -188,6 +222,7 @@ public class manageGroup extends AppCompatActivity {
                     items.get(popupContact.numItem).setMail(popupContact.getMail());
                     adapter.notifyDataSetChanged();
                 }
+                ajoutContact.setVisibility(items.size() > 0 ? View.INVISIBLE: View.VISIBLE);
             }
         });
 
@@ -203,6 +238,25 @@ public class manageGroup extends AppCompatActivity {
         dateRetour.setText(makeDateString(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)));
 
 
+        deleteGroupe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupConfirm.show(view);
+            }
+        });
+
+        popupConfirm.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if(popupConfirm.delete){
+                    SharedPreferences groupsName = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit_groupsName = groupsName.edit();
+                    edit_groupsName.remove(initialTitle);
+                    edit_groupsName.commit();
+                    finish();
+                }
+            }
+        });
 
         initDatePicker(dateDepart);
 
@@ -269,7 +323,7 @@ public class manageGroup extends AppCompatActivity {
 
         edit_userData.putInt("repetition", repetitionChoose);
 
-        edit_userData.putInt("image", R.drawable.chicken);
+        edit_userData.putInt("image", idImage);
 
         edit_userData.putString("message", zoneMessage.getText().toString());
 

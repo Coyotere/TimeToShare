@@ -8,6 +8,14 @@
     android:background="@color/background_color">
 
     <ImageButton
+        android:id="@+id/deleteGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/round_active_add_sm" />
+
+    <ImageButton
         android:id="@+id/leaveManager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,14 +29,22 @@
         app:tint="@color/red_TTS"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imageGroupe"
-        android:layout_width="0dp"
+        android:layout_width="74dp"
         android:layout_height="74dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:contentDescription="@string/add"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tiger" />
 
     <EditText
         android:id="@+id/titreGroupe"
@@ -40,6 +56,8 @@
         android:shadowColor="@color/black"
         android:shadowDx="1.2"
         android:shadowDy="1.2"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         android:shadowRadius="1.2"
         android:textAlignment="center"
         android:textColor="@color/red_TTS"
@@ -156,7 +174,19 @@
         android:foregroundGravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/AjoutContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter des contacts"
+        app:layout_constraintBottom_toBottomOf="@+id/recycleView"
+        app:layout_constraintEnd_toEndOf="@+id/recycleView"
+        app:layout_constraintStart_toStartOf="@+id/recycleView"
+        app:layout_constraintTop_toTopOf="@+id/recycleView" />
 
     <ImageButton
         android:id="@+id/btnAddUsers"

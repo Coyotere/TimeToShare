@@ -41,10 +41,14 @@ public class createGroup extends AppCompatActivity {
     Spinner spinner;
     PopupContact popupContact;
     private String[] textAlea;
-    ImageButton image;
+
 
     List<Contact> items = new ArrayList<Contact>();
     PopupImage popupImage;
+    int idImage;
+    ImageButton image;
+
+    TextView ajoutContact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +57,8 @@ public class createGroup extends AppCompatActivity {
 
         textAlea = getResources().getStringArray(R.array.textAlea);
         image = findViewById(R.id.groupImage);
-
-
+        idImage = R.drawable.tiger;
+        ajoutContact = findViewById(R.id.AjoutContact);
         RecyclerView recyclerView = findViewById(R.id.recycleViewCreate);
         popupContact = new PopupContact(getBaseContext(), recyclerView);
         popupImage = new PopupImage(getBaseContext(),recyclerView);
@@ -96,6 +100,17 @@ public class createGroup extends AppCompatActivity {
             }
         });
 
+        popupImage.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if(popupImage.idImage != -1){
+                    image.setImageResource(popupImage.idImage);
+                    idImage = popupImage.idImage;
+                    //image.setBackground(getResources().getDrawable(popupImage.idImage));
+                }
+            }
+        });
+
         titreGroupe = findViewById(R.id.titreGroupe);
         zoneMessage = findViewById(R.id.zoneMessage);
         zoneMessage.setText(getTextAlea());
@@ -133,7 +148,7 @@ public class createGroup extends AppCompatActivity {
 
         //name = findViewById(R.id.name);
 
-        adapter = new GroupAdapter(createGroup.this, items,popupContact);
+        adapter = new GroupAdapter(createGroup.this, items,popupContact, ajoutContact);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -161,10 +176,12 @@ public class createGroup extends AppCompatActivity {
                     items.get(popupContact.numItem).setMail(popupContact.getMail());
                     adapter.notifyDataSetChanged();
                 }
+                ajoutContact.setVisibility(items.size() > 0 ? View.INVISIBLE: View.VISIBLE);
             }
         });
 
     }
+
 
     private String getTextAlea(){
         int randomIndex = new Random().nextInt(textAlea.length);
@@ -219,7 +236,7 @@ public class createGroup extends AppCompatActivity {
 
         edit_userData.putInt("repetition", repetitionChoose);
 
-        edit_userData.putInt("image", R.drawable.chicken);
+        edit_userData.putInt("image", idImage);
 
         edit_userData.putString("message", zoneMessage.getText().toString());
 
