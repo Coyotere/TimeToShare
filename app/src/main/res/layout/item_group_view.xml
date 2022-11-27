@@ -17,11 +17,17 @@
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/name" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/deleteContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:text="Button" />
+        android:layout_width="40dp"
+        android:layout_height="10dp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/around_button_red"
+        android:backgroundTint="@color/red_TTS"
+        app:cornerRadius="240px" />
 
 </RelativeLayout>
