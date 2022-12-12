@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -37,7 +39,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainHolder> {
         holder.nameView.setText(items.get(position).name);
         holder.imageView.setImageResource(items.get(position).image);
 
-
        switch(items.get(position).active){
            case BEFORE:
                holder.activeView.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
@@ -51,7 +52,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainHolder> {
 
         holder.bellView.setImageResource(R.drawable.bell);
         holder.bellView.setVisibility(items.get(position).needMessage ? View.VISIBLE:View.INVISIBLE);
-
 
     }
 
