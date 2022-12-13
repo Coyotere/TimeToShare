@@ -73,6 +73,7 @@ public class ItemMainActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        System.out.println("ICIII");
 
         if(currentTime.after(startingDate) && currentTime.before(finalDate)){
             this.active = Active.PROGRESS;
@@ -83,6 +84,7 @@ public class ItemMainActivity {
         else{
             this.active = Active.AFTER;
         }
+        System.out.println("LAAAAA");
 
         long diff = currentTime.getTime() - lastRepetition.getTime();
         int nbDay = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);

@@ -58,6 +58,7 @@ public class manageGroup extends AppCompatActivity {
     Button deleteGroupe;
     PopupConfirm popupConfirm;
     TextView ajoutContact;
+    String lastRepetition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,7 @@ public class manageGroup extends AppCompatActivity {
         deleteGroupe = findViewById(R.id.deleteGroup);
         ajoutContact = findViewById(R.id.AjoutContact);
         ajoutContact.setVisibility(View.INVISIBLE);
+        lastRepetition = db.getString("lastRepetition", null);
 
         int[] repet = {1,3,5,7,14};
         String[] repetString = {"1 jour","3 jours", "5 jours", "1 semaine", "2 semaines"};
@@ -280,6 +282,7 @@ public class manageGroup extends AppCompatActivity {
         SharedPreferences userData = getSharedPreferences(initialTitle, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit_userData = userData.edit();
         edit_userData.clear();
+        edit_userData.commit();
 
         userData = getSharedPreferences(titre.getText().toString(), Context.MODE_PRIVATE);
         edit_userData = userData.edit();
@@ -327,6 +330,8 @@ public class manageGroup extends AppCompatActivity {
 
         edit_userData.putString("message", zoneMessage.getText().toString());
 
+        edit_userData.putString("lastRepetition", lastRepetition);
+
         edit_userData.commit();
 
         userData = getSharedPreferences("groupsName", Context.MODE_PRIVATE);
@@ -336,7 +341,7 @@ public class manageGroup extends AppCompatActivity {
 
         edit_userData.putString(titre.getText().toString(), titre.getText().toString());
         edit_userData.commit();
-
+        System.out.println("Passage");
         return true;
     }
 
