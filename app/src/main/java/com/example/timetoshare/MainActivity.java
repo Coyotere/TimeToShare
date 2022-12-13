@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         SharedPreferences.Editor edit_userData = groupsName.edit();
-         //edit_userData.clear();
-         //edit_userData.commit();
+        //edit_userData.clear();
+        //edit_userData.commit();
 
         recyclerView = findViewById(R.id.recycleViewMain);
         adapter = new MainAdapter(MainActivity.this, items);
@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
             tmps.add(new ItemMainActivity(group.getKey(), this));
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel = new NotificationChannel("My notif", "My notif", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        //    NotificationChannel channel = new NotificationChannel("My notif", "My notif", NotificationManager.IMPORTANCE_DEFAULT);
+        //    NotificationManager manager = getSystemService(NotificationManager.class);
+        //    manager.createNotificationChannel(channel);
+        //}
 
        // nameView = itemView.findViewById(R.id.name_itemMain);
         //Intent myIntent = new Intent(context, sendingMessage.class);
@@ -93,19 +93,19 @@ public class MainActivity extends AppCompatActivity {
         //myIntent.putExtra("groupName", nameView.getText().toString());
         //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, myIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        for(ItemMainActivity item : tmps){
-            if(item.needMessage){
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My notif");
-                builder.setContentTitle("TimeToShare");
-                builder.setContentText("Pensez à envoyer un message à votre groupe !");
-                builder.setSmallIcon(R.drawable.logo);
-                //builder.setContentIntent(pendingIntent);
-                builder.setAutoCancel(true);
+        //for(ItemMainActivity item : tmps){
+        //    if(item.needMessage){
+        //        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My notif");
+        //        builder.setContentTitle("TimeToShare");
+        //        builder.setContentText("Pensez à envoyer un message à votre groupe !");
+        //        builder.setSmallIcon(R.drawable.logo);
+        //        //builder.setContentIntent(pendingIntent);
+        //        builder.setAutoCancel(true);
 
-                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
-                managerCompat.notify(1,builder.build());
-            }
-        }
+        //        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+        //        managerCompat.notify(1,builder.build());
+        //    }
+        //}
 
 
     }

@@ -8,14 +8,17 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/mail"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/name" />
+        android:layout_toStartOf="@+id/deleteContact"
+        android:layout_toEndOf="@+id/name"
+        android:text="TextView2" />
 
     <android.widget.Button
         android:id="@+id/deleteContact"

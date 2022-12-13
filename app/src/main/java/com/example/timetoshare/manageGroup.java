@@ -39,7 +39,7 @@ public class manageGroup extends AppCompatActivity {
     EditText zoneMessage;
     ImageView img;
     EditText titre;
-    ImageButton supUser;
+    Button supUser;
     SharedPreferences db;
     GroupAdapter adapter;
     int repetitionChoose;
@@ -55,7 +55,7 @@ public class manageGroup extends AppCompatActivity {
     int idImage;
     ImageButton image;
 
-    ImageButton deleteGroupe;
+    Button deleteGroupe;
     PopupConfirm popupConfirm;
     TextView ajoutContact;
     @Override

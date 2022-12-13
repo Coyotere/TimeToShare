@@ -7,13 +7,20 @@
     tools:context=".MainActivity"
     android:background="@color/background_color">
 
-    <ImageButton
+    <android.widget.Button
         android:id="@+id/deleteGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:text="-"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:foregroundGravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/around_button_red"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/round_active_add_sm" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/leaveManager"
