@@ -88,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
        // nameView = itemView.findViewById(R.id.name_itemMain);
-        //Intent myIntent = new Intent(context, sendingMessage.class);
-        //myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Intent myIntent = new Intent(context, MainActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //myIntent.putExtra("groupName", nameView.getText().toString());
-        //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, myIntent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, myIntent, PendingIntent.FLAG_IMMUTABLE);
 
         for(ItemMainActivity item : tmps){
             if(item.needMessage){
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setContentTitle("TimeToShare");
                 builder.setContentText("Pensez à envoyer un message à votre groupe !");
                 builder.setSmallIcon(R.drawable.logo);
-                //builder.setContentIntent(pendingIntent);
+                builder.setContentIntent(pendingIntent);
                 builder.setAutoCancel(true);
 
                 NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
